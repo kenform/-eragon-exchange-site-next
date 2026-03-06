@@ -3,6 +3,7 @@
 import { useEffect } from 'react';
 import ExchangeCard from '../components/ExchangeCard';
 import { exchanges } from '../components/exchange-data';
+import { assets } from '../src/config/assets';
 
 export default function HomePage() {
   useEffect(() => {
@@ -40,6 +41,17 @@ export default function HomePage() {
     };
   }, []);
 
+  const heroBackgroundStyle = {
+    backgroundImage: `
+      radial-gradient(ellipse at 50% 34%, rgba(124,189,255,.24) 0%, rgba(67,120,214,.12) 38%, rgba(8,16,36,.56) 78%),
+      linear-gradient(180deg, rgba(4,8,18,.66) 0%, rgba(5,10,22,.62) 42%, rgba(4,8,17,.74) 100%),
+      url(${assets.hero.portalBg})
+    `,
+    backgroundSize: 'cover, cover, cover',
+    backgroundPosition: 'center, center, center 32%',
+    backgroundRepeat: 'no-repeat',
+  };
+
   return (
     <>
       <div className="atmo atmo-noise" aria-hidden="true" />
@@ -63,7 +75,7 @@ export default function HomePage() {
         </div>
       </div>
 
-      <header id="hero" className="hero reveal">
+      <header id="hero" className="hero reveal" style={heroBackgroundStyle}>
         <div className="hero-scene" aria-hidden="true">
           <span className="portal-halo" />
           <span className="portal-arch outer" />

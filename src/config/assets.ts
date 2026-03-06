@@ -2,7 +2,7 @@ export const imageBase = '/images' as const;
 
 export const assets = {
   hero: {
-    portalBg: `${imageBase}/hero/portal-bg.webp`,
+    portalBg: `${imageBase}/hero/portal-bg.png`,
     portalBgAlt: `${imageBase}/hero/portal-bg-alt.webp`,
     moonOverlay: `${imageBase}/hero/moon-overlay.webp`,
   },

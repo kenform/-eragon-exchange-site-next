@@ -91,11 +91,11 @@ body{
 .section-head p{margin:0;color:#aabed8}
 .gates-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
 
-.gate{position:relative;overflow:hidden;background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,0)), rgba(15,23,44,.62);border:1px solid var(--line);border-radius:16px;padding:16px;box-shadow:0 10px 28px rgba(0,0,0,.32);transition:transform .24s ease,border-color .24s ease,box-shadow .24s ease, background .24s ease}
-.gate::after{content:"";position:absolute;inset:-36% -20%;background:radial-gradient(circle at 50% 50%, rgba(119,197,255,.22), transparent 58%);opacity:0;transition:opacity .28s ease;pointer-events:none}
-.gate:hover{transform:translateY(-7px) scale(1.013);box-shadow:0 22px 44px rgba(4,10,24,.52);border-color:#8ecbff;background:linear-gradient(180deg, rgba(142,192,255,.08), rgba(255,255,255,0)), rgba(17,27,50,.68)}
+.gate{position:relative;overflow:hidden;background:linear-gradient(165deg, rgba(177,214,255,.08) 0%, rgba(96,140,220,.04) 34%, rgba(255,255,255,0) 70%), rgba(15,23,44,.62);border:1px solid var(--line);border-radius:16px;padding:16px;box-shadow:0 10px 28px rgba(0,0,0,.32), inset 0 1px 0 rgba(196,225,255,.08);transition:transform .24s ease,border-color .24s ease,box-shadow .24s ease, background .24s ease}
+.gate::after{content:"";position:absolute;inset:-36% -20%;background:radial-gradient(circle at 50% 50%, rgba(119,197,255,.24), transparent 58%);opacity:0;transition:opacity .28s ease;pointer-events:none}
+.gate:hover{transform:translateY(-4px);box-shadow:0 20px 40px rgba(4,10,24,.5), 0 0 24px rgba(120,193,255,.24), inset 0 1px 0 rgba(215,236,255,.15);border-color:#9cd5ff;background:linear-gradient(165deg, rgba(165,209,255,.14) 0%, rgba(111,161,235,.08) 38%, rgba(255,255,255,0) 72%), rgba(17,27,50,.7)}
 .gate:hover::after{opacity:1}
-.gate.highlighted{border-color:#a0affd;box-shadow:0 14px 35px rgba(76,92,182,.34)}
+.gate.highlighted{border-color:#a0affd;box-shadow:0 14px 35px rgba(76,92,182,.34), 0 0 20px rgba(140,165,255,.2)}
 .gate-topline{position:absolute;left:14px;right:14px;top:0;height:1px;background:linear-gradient(90deg, transparent, rgba(166,217,255,.72), transparent)}
 .gate-glyph{position:absolute;right:12px;bottom:10px;width:34px;height:34px;border-radius:50%;border:1px solid rgba(165,208,255,.2);opacity:.5}
 .gate-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
@@ -111,8 +111,8 @@ body{
 .gate:hover .rune{opacity:.95;animation-duration:3.8s}
 .gate h3{margin:10px 0 8px}
 .gate p{margin:0 0 12px;color:#adbed7;line-height:1.45}
-.btn-ghost{border:1px solid rgba(168,208,255,.64);color:#d9edff;background:rgba(42,73,133,.22)}
-.btn-ghost:hover{background:rgba(79,122,196,.26)}
+.btn-ghost{border:1px solid rgba(168,208,255,.64);color:#d9edff;background:rgba(42,73,133,.22);box-shadow:0 0 0 rgba(130,198,255,0);transition:background .24s ease, box-shadow .24s ease, border-color .24s ease, transform .2s ease}
+.btn-ghost:hover{background:rgba(79,122,196,.28);border-color:rgba(192,228,255,.82);box-shadow:0 0 18px rgba(126,197,255,.28);transform:translateY(-1px)}
 .note{margin-top:10px;font-size:.88rem;color:#d6dbff;line-height:1.35}
 
 .oath{text-align:center;padding:14px 20px 56px;border:1px solid rgba(146,194,255,.2);border-radius:18px;background:linear-gradient(180deg, rgba(26,38,74,.24), rgba(13,22,43,.2));backdrop-filter:blur(4px)}

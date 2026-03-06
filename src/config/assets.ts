@@ -7,7 +7,7 @@ export const assets = {
     moonOverlay: `${imageBase}/hero/moon-overlay.webp`,
   },
   symbols: {
-    elvenSigil: `${imageBase}/symbols/elven-sigil.svg`,
+    elvenSigil: `${imageBase}/symbols/elven-sigil.png`,
     riderSeal: `${imageBase}/symbols/rider-seal.svg`,
     sacredRing: `${imageBase}/symbols/sacred-ring.svg`,
   },

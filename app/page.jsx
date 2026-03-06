@@ -7,18 +7,14 @@ import { exchanges } from '../components/exchange-data';
 export default function HomePage() {
   useEffect(() => {
     const onMove = (e) => {
-      const x = (e.clientX / window.innerWidth - 0.5) * 18;
-      const y = (e.clientY / window.innerHeight - 0.5) * 12;
+      const x = (e.clientX / window.innerWidth - 0.5) * 14;
+      const y = (e.clientY / window.innerHeight - 0.5) * 10;
       document.documentElement.style.setProperty('--mx', `${x}px`);
       document.documentElement.style.setProperty('--my', `${y}px`);
     };
 
     const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) entry.target.classList.add('in');
-        });
-      },
+      (entries) => entries.forEach((entry) => entry.isIntersecting && entry.target.classList.add('in')),
       { threshold: 0.12 }
     );
 
@@ -41,42 +37,44 @@ export default function HomePage() {
 
       <header className="hero reveal">
         <div className="hero-scene" aria-hidden="true">
-          <span className="dragon-core" />
-          <span className="dragon-wing wing-left" />
-          <span className="dragon-wing wing-right" />
-          <span className="dragon-eye" />
-          <span className="elven-arc" />
-          <span className="rider-gate" />
+          <span className="portal-halo" />
+          <span className="portal-arch outer" />
+          <span className="portal-arch inner" />
+          <span className="light-ray ray-a" />
+          <span className="light-ray ray-b" />
+          <span className="light-ray ray-c" />
+          <span className="forest-depth" />
+          <span className="rune-ring" />
         </div>
 
         <div className="hero-inner">
-          <p className="kicker">Elven AI Lab · Canon-Inspired Rider Gateway</p>
+          <p className="kicker">Elven AI Lab · Ellesméra Gateway</p>
           <h1 className="hero-title">
-            Enter the Sapphire Gate
+            Лунные Врата Эллесмеры
             <br />
-            Choose Your Elite Route
+            Выбери Свой Путь
           </h1>
           <p className="subtitle">
-            Не портал и не дашборд. Это точка входа с атмосферой мира Эрагона:
-            древняя дисциплина, эльфийская ясность, драконья мощь и чистый путь к действию.
+            Премиальный хаб маршрутов: эльфийская ясность, древняя дисциплина, спокойная сила.
+            Открой врата и перейди к нужной бирже без шума и лишней сложности.
           </p>
 
           <div className="hero-cta-row">
             <a href="#gates" className="btn btn-primary">Открыть Врата</a>
-            <a href="#oath" className="btn btn-secondary">Путь Всадника</a>
+            <a href="#oath" className="btn btn-secondary">Клятва Пути</a>
           </div>
         </div>
       </header>
 
       <main>
         <section className="section reveal intro-runes">
-          <div className="intro-pill">Saphira · Arya · Ellesméra · Rider Oath</div>
+          <div className="intro-pill">Arya · Ellesméra · Sacred Geometry · Disciplined Path</div>
         </section>
 
         <section id="gates" className="section section-gates reveal">
           <div className="section-head">
-            <h2>Guild Gateways</h2>
-            <p>Выбери маршрут. Нажми. Войди. Без лишнего шума.</p>
+            <h2>Элитные Гильдии</h2>
+            <p>Сильная атмосфера с простым действием: выбрал, нажал, вошёл.</p>
           </div>
           <div className="gates-grid">
             {exchanges.map((item) => (

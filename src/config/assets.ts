@@ -12,7 +12,7 @@ export const assets = {
     sacredRing: `${imageBase}/symbols/sacred-ring.svg`,
   },
   decor: {
-    dragonSilhouette: `${imageBase}/decor/dragon-silhouette.webp`,
+    dragonSilhouette: `${imageBase}/decor/dragon-silhouette.png`,
     elvenArch: `${imageBase}/decor/elven-arch.webp`,
     moonGate: `${imageBase}/decor/moon-gate.webp`,
   },

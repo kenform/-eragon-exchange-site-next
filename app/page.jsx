@@ -6,11 +6,21 @@ import { exchanges } from '../components/exchange-data';
 
 export default function HomePage() {
   useEffect(() => {
+    const root = document.documentElement;
+
     const onMove = (e) => {
       const x = (e.clientX / window.innerWidth - 0.5) * 14;
       const y = (e.clientY / window.innerHeight - 0.5) * 10;
-      document.documentElement.style.setProperty('--mx', `${x}px`);
-      document.documentElement.style.setProperty('--my', `${y}px`);
+      root.style.setProperty('--mx', `${x}px`);
+      root.style.setProperty('--my', `${y}px`);
+    };
+
+    const onScroll = () => {
+      const hero = document.getElementById('hero');
+      if (!hero) return;
+      const h = hero.offsetHeight || 1;
+      const progress = Math.min(1, Math.max(0, window.scrollY / h));
+      root.style.setProperty('--portalProgress', `${progress}`);
     };
 
     const observer = new IntersectionObserver(
@@ -20,9 +30,12 @@ export default function HomePage() {
 
     document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
     window.addEventListener('mousemove', onMove, { passive: true });
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
 
     return () => {
       window.removeEventListener('mousemove', onMove);
+      window.removeEventListener('scroll', onScroll);
       observer.disconnect();
     };
   }, []);

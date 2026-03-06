@@ -81,6 +81,11 @@ export default function HomePage() {
           <span className="portal-arch outer" />
           <span className="portal-arch inner" />
           <span className="portal-ornament" />
+          <span
+            className="dragon-silhouette-layer"
+            aria-hidden="true"
+            style={{ backgroundImage: `url(${assets.decor.dragonSilhouette})` }}
+          />
           <span className="moonbeam beam-a" />
           <span className="moonbeam beam-b" />
           <span className="moonbeam beam-c" />

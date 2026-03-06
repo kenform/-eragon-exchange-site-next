@@ -22,6 +22,7 @@ export default function HomePage() {
       const h = hero.offsetHeight || 1;
       const progress = Math.min(1, Math.max(0, window.scrollY / h));
       root.style.setProperty('--portalProgress', `${progress}`);
+      root.style.setProperty('--portalShift', `${(progress * 8).toFixed(2)}px`);
     };
 
     const observer = new IntersectionObserver(
@@ -48,7 +49,7 @@ export default function HomePage() {
       url(${assets.hero.portalBg})
     `,
     backgroundSize: 'cover, cover, cover',
-    backgroundPosition: 'center, center, center 32%',
+    backgroundPosition: 'center, center, center calc(32% + var(--portalShift))',
     backgroundRepeat: 'no-repeat',
   };
 

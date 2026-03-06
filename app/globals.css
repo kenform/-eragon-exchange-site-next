@@ -61,6 +61,13 @@ body{
 
 .hero{position:relative;min-height:80vh;display:grid;place-items:center;padding:58px 20px 30px;overflow:hidden;z-index:1;transform:translate3d(calc(var(--mx) * .12), calc(var(--my) * .08), 0)}
 .hero::before{content:"";position:absolute;inset:-1px 0 auto 0;height:26vh;pointer-events:none;background:linear-gradient(180deg, rgba(8,14,30,.46) 0%, rgba(8,14,30,.2) 44%, rgba(8,14,30,0) 100%);z-index:1}
+.hero::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:1;background:
+  radial-gradient(ellipse at 50% 46%, rgba(146,206,255,.22) 0%, rgba(118,176,255,.1) 26%, rgba(17,27,58,0) 56%),
+  radial-gradient(ellipse at 50% 50%, rgba(8,14,30,0) 58%, rgba(6,10,23,.28) 78%, rgba(4,7,16,.52) 100%),
+  radial-gradient(circle at 6% 10%, rgba(4,8,18,.42), transparent 42%),
+  radial-gradient(circle at 94% 10%, rgba(4,8,18,.42), transparent 42%),
+  radial-gradient(circle at 50% 105%, rgba(4,8,18,.22), transparent 38%);
+}
 .hero-inner{position:relative;max-width:980px;text-align:center;z-index:2}
 .kicker{margin:0 0 12px;letter-spacing:.18em;text-transform:uppercase;color:#cae4ff;font-size:.75rem}
 .hero-sigil-clean{position:relative;margin:0 auto 10px;width:min(18vw,140px);height:min(18vw,140px);border-radius:50%;border:1px solid rgba(182,221,255,.3);background:radial-gradient(circle at 50% 50%, rgba(158,213,255,.16), rgba(130,161,238,.08) 46%, transparent 72%);box-shadow:0 0 22px rgba(133,191,255,.2), inset 0 0 16px rgba(178,217,255,.12);opacity:.78;animation:sigilBreath 18s ease-in-out infinite}

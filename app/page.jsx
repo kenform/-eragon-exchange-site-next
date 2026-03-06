@@ -44,6 +44,7 @@ export default function HomePage() {
     <>
       <div className="atmo atmo-noise" aria-hidden="true" />
       <div className="atmo atmo-stars" aria-hidden="true" />
+      <div className="atmo atmo-dust" aria-hidden="true" />
       <div className="atmo atmo-fog-back" aria-hidden="true" />
       <div className="atmo atmo-fog-front" aria-hidden="true" />
       <div className="atmo atmo-moon" aria-hidden="true" />

@@ -100,18 +100,14 @@ export default function HomePage() {
         <div className="hero-inner">
           <p className="kicker">Elven AI Lab · Ellesméra Gateway</p>
           <div className="hero-sigil" aria-hidden="true" />
-          <div
-            className="hero-sigil-image"
-            aria-hidden="true"
-            style={{ backgroundImage: `url(${assets.symbols.elvenSigil})` }}
-          />
+          <div className="hero-sigil-clean" aria-hidden="true" />
           <h1 className="hero-title">Лунные Врата Эллесмеры</h1>
           <p className="hero-line">Выбери свой путь</p>
           <p className="subtitle">Открой врата и следуй дисциплине.</p>
 
           <div className="hero-cta-row">
             <a href="#gates" className="btn btn-primary">Открыть Врата</a>
-            <a href="#oath" className="btn btn-secondary">Клятва Пути</a>
+            <a href="#oath" className="btn btn-secondary">Клятва Всадника</a>
           </div>
         </div>
       </header>

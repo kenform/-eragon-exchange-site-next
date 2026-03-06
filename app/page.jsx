@@ -35,7 +35,19 @@ export default function HomePage() {
       <div className="atmo atmo-fog-front" aria-hidden="true" />
       <div className="atmo atmo-moon" aria-hidden="true" />
 
-      <header className="hero reveal">
+      <div className="top-nav reveal">
+        <div className="top-nav-inner">
+          <a href="#hero" className="brand">Elven AI Lab</a>
+          <nav>
+            <a href="#hero">Врата</a>
+            <a href="#gates">Дома</a>
+            <a href="#oath">Клятва</a>
+          </nav>
+          <a href="#gates" className="mini-cta">Войти</a>
+        </div>
+      </div>
+
+      <header id="hero" className="hero reveal">
         <div className="hero-scene" aria-hidden="true">
           <span className="portal-halo" />
           <span className="portal-arch outer" />
@@ -49,15 +61,10 @@ export default function HomePage() {
 
         <div className="hero-inner">
           <p className="kicker">Elven AI Lab · Ellesméra Gateway</p>
-          <h1 className="hero-title">
-            Лунные Врата Эллесмеры
-            <br />
-            Выбери Свой Путь
-          </h1>
-          <p className="subtitle">
-            Премиальный хаб маршрутов: эльфийская ясность, древняя дисциплина, спокойная сила.
-            Открой врата и перейди к нужной бирже без шума и лишней сложности.
-          </p>
+          <div className="hero-sigil" aria-hidden="true" />
+          <h1 className="hero-title">Лунные Врата Эллесмеры</h1>
+          <p className="hero-line">Выбери свой путь</p>
+          <p className="subtitle">Открой врата и следуй дисциплине.</p>
 
           <div className="hero-cta-row">
             <a href="#gates" className="btn btn-primary">Открыть Врата</a>
@@ -68,12 +75,12 @@ export default function HomePage() {
 
       <main>
         <section className="section reveal intro-runes">
-          <div className="intro-pill">Arya · Ellesméra · Sacred Geometry · Disciplined Path</div>
+          <div className="intro-pill">Ellesméra · Arya · Sacred Geometry · Disciplined Path</div>
         </section>
 
         <section id="gates" className="section section-gates reveal">
           <div className="section-head">
-            <h2>Элитные Гильдии</h2>
+            <h2>Врата Торговых Домов</h2>
             <p>Сильная атмосфера с простым действием: выбрал, нажал, вошёл.</p>
           </div>
           <div className="gates-grid">

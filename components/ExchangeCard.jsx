@@ -3,6 +3,7 @@ export default function ExchangeCard({ item }) {
     <article className={`gate reveal tone-${item.tone} ${item.highlight ? 'highlighted' : ''}`}>
       <div className="gate-topline" aria-hidden="true" />
       <span className="rune" aria-hidden="true" />
+      <span className="gate-glyph" aria-hidden="true" />
 
       <div className="gate-head">
         <span className="sigil" aria-hidden="true">{item.sigil}</span>

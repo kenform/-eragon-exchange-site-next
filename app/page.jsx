@@ -46,7 +46,9 @@ export default function HomePage() {
       <div className="atmo atmo-stars" aria-hidden="true" />
       <div className="atmo atmo-dust" aria-hidden="true" />
       <div className="atmo atmo-fog-back" aria-hidden="true" />
+      <div className="atmo atmo-fog-mid" aria-hidden="true" />
       <div className="atmo atmo-fog-front" aria-hidden="true" />
+      <div className="atmo atmo-aether" aria-hidden="true" />
       <div className="atmo atmo-moon" aria-hidden="true" />
 
       <div className="top-nav reveal">
@@ -66,6 +68,7 @@ export default function HomePage() {
           <span className="portal-halo" />
           <span className="portal-arch outer" />
           <span className="portal-arch inner" />
+          <span className="portal-ornament" />
           <span className="moonbeam beam-a" />
           <span className="moonbeam beam-b" />
           <span className="moonbeam beam-c" />

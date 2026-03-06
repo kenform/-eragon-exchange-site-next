@@ -7,7 +7,7 @@ import { exchanges } from '../components/exchange-data';
 export default function HomePage() {
   useEffect(() => {
     const onMove = (e) => {
-      const x = (e.clientX / window.innerWidth - 0.5) * 16;
+      const x = (e.clientX / window.innerWidth - 0.5) * 18;
       const y = (e.clientY / window.innerHeight - 0.5) * 12;
       document.documentElement.style.setProperty('--mx', `${x}px`);
       document.documentElement.style.setProperty('--my', `${y}px`);
@@ -33,55 +33,51 @@ export default function HomePage() {
 
   return (
     <>
-      <div className="veil veil-noise" aria-hidden="true" />
-      <div className="veil veil-stars" aria-hidden="true" />
-      <div className="veil veil-fog-back" aria-hidden="true" />
-      <div className="veil veil-fog-front" aria-hidden="true" />
-      <div className="veil veil-aura" aria-hidden="true" />
+      <div className="atmo atmo-noise" aria-hidden="true" />
+      <div className="atmo atmo-stars" aria-hidden="true" />
+      <div className="atmo atmo-fog-back" aria-hidden="true" />
+      <div className="atmo atmo-fog-front" aria-hidden="true" />
+      <div className="atmo atmo-moon" aria-hidden="true" />
 
       <header className="hero reveal">
-        <div className="hero-dragon" aria-hidden="true">
+        <div className="hero-scene" aria-hidden="true">
           <span className="dragon-core" />
-          <span className="dragon-wing left" />
-          <span className="dragon-wing right" />
+          <span className="dragon-wing wing-left" />
+          <span className="dragon-wing wing-right" />
           <span className="dragon-eye" />
-          <span className="rune-arc" />
+          <span className="elven-arc" />
+          <span className="rider-gate" />
         </div>
 
         <div className="hero-inner">
-          <p className="hero-kicker">Elven AI Lab · Rider Gate</p>
+          <p className="kicker">Elven AI Lab · Canon-Inspired Rider Gateway</p>
           <h1 className="hero-title">
-            Sapphire Gate
+            Enter the Sapphire Gate
             <br />
-            of the Dragon Rider
+            Choose Your Elite Route
           </h1>
-          <p className="hero-subtitle">
-            Лаконичный хаб избранных маршрутов: древняя дисциплина, чистый фокус,
-            сильные входы. Выбери гильдию и открой врата без шума.
+          <p className="subtitle">
+            Не портал и не дашборд. Это точка входа с атмосферой мира Эрагона:
+            древняя дисциплина, эльфийская ясность, драконья мощь и чистый путь к действию.
           </p>
 
           <div className="hero-cta-row">
             <a href="#gates" className="btn btn-primary">Открыть Врата</a>
-            <a href="#oath" className="btn btn-secondary">Клятва Пути</a>
+            <a href="#oath" className="btn btn-secondary">Путь Всадника</a>
           </div>
         </div>
       </header>
 
       <main>
-        <section className="section section-sigil reveal" aria-label="Identity">
-          <div className="sigil-grid">
-            <div className="sigil-card"><b>Saphira</b><span>Сапфировая сила · благородная мощь</span></div>
-            <div className="sigil-card"><b>Arya</b><span>Эльфийская ясность · серебряная грация</span></div>
-            <div className="sigil-card"><b>Rider Oath</b><span>Дисциплина, лимиты и путь без хаоса</span></div>
-          </div>
+        <section className="section reveal intro-runes">
+          <div className="intro-pill">Saphira · Arya · Ellesméra · Rider Oath</div>
         </section>
 
         <section id="gates" className="section section-gates reveal">
           <div className="section-head">
-            <h2>Выбор Гильдии</h2>
-            <p>Прямые маршруты. Минимум лишнего. Максимум фокуса на действии.</p>
+            <h2>Guild Gateways</h2>
+            <p>Выбери маршрут. Нажми. Войди. Без лишнего шума.</p>
           </div>
-
           <div className="gates-grid">
             {exchanges.map((item) => (
               <ExchangeCard key={item.id} item={item} />
@@ -91,10 +87,10 @@ export default function HomePage() {
 
         <section id="oath" className="section oath reveal">
           <h2>Клятва Всадника</h2>
-          <p>Один вход — одна стратегия. Один риск — один лимит. Один план — без импровизации.</p>
+          <p>Один вход — одна стратегия. Один риск — один лимит. Один путь — без хаоса.</p>
           <div className="oath-steps">
             <div className="step"><b>01</b><span>Выбери гильдию</span></div>
-            <div className="step"><b>02</b><span>Оцени риск и объём</span></div>
+            <div className="step"><b>02</b><span>Проверь условия</span></div>
             <div className="step"><b>03</b><span>Входи по плану</span></div>
           </div>
         </section>

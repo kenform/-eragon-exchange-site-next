@@ -27,12 +27,19 @@ body{
 .atmo{position:fixed;inset:0;pointer-events:none;z-index:0}
 .atmo-noise{opacity:.06;background-image:radial-gradient(#fff .45px, transparent .45px);background-size:3px 3px}
 .atmo-stars{background:
-  radial-gradient(circle at 10% 24%, rgba(158,212,255,.32) 0 1px, transparent 2px),
-  radial-gradient(circle at 76% 17%, rgba(192,231,255,.24) 0 1px, transparent 2px),
-  radial-gradient(circle at 54% 64%, rgba(151,206,255,.2) 0 1px, transparent 2px),
-  radial-gradient(circle at 88% 72%, rgba(192,231,255,.16) 0 1px, transparent 2px);
-  animation:starDrift 24s linear infinite;
+  radial-gradient(circle at 10% 24%, rgba(158,212,255,.22) 0 1px, transparent 2px),
+  radial-gradient(circle at 76% 17%, rgba(192,231,255,.16) 0 1px, transparent 2px),
+  radial-gradient(circle at 54% 64%, rgba(151,206,255,.14) 0 1px, transparent 2px),
+  radial-gradient(circle at 88% 72%, rgba(192,231,255,.1) 0 1px, transparent 2px);
+  animation:starDrift 28s linear infinite;
 }
+.atmo-dust{opacity:.35;background:
+  radial-gradient(circle at 14% 32%, rgba(190,228,255,.13) 0 1.4px, transparent 3px),
+  radial-gradient(circle at 31% 64%, rgba(176,220,255,.11) 0 1.3px, transparent 3px),
+  radial-gradient(circle at 58% 28%, rgba(198,232,255,.1) 0 1.2px, transparent 3px),
+  radial-gradient(circle at 76% 58%, rgba(168,210,255,.1) 0 1.4px, transparent 3px),
+  radial-gradient(circle at 90% 38%, rgba(182,224,255,.09) 0 1.2px, transparent 3px);
+  animation:dustDrift 34s linear infinite}
 .atmo-fog-back{top:12%;height:40vh;background:radial-gradient(ellipse at 50% 50%, rgba(83,148,245,.18), rgba(9,22,58,.02) 64%, transparent 73%);filter:blur(25px);animation:fogA 20s ease-in-out infinite}
 .atmo-fog-front{top:auto;bottom:0;height:34vh;background:radial-gradient(ellipse at 50% 50%, rgba(136,206,255,.14), rgba(9,22,58,.02) 56%, transparent 72%);filter:blur(28px);animation:fogB 24s ease-in-out infinite}
 .atmo-moon{background:radial-gradient(ellipse at 50% 23%, rgba(150,212,255,.22) 0%, rgba(12,21,46,.2) 48%, rgba(4,8,19,.8) 100%)}
@@ -129,6 +136,7 @@ footer{position:relative;z-index:1;padding:22px 20px 92px;text-align:center;colo
 .reveal.in{opacity:1;transform:translateY(0)}
 
 @keyframes starDrift{0%{transform:translateY(0)}100%{transform:translateY(-8px)}}
+@keyframes dustDrift{0%{transform:translate3d(0,0,0)}50%{transform:translate3d(0,-10px,0)}100%{transform:translate3d(0,0,0)}}
 @keyframes fogA{0%,100%{transform:translateX(-2%) translateY(0)}50%{transform:translateX(2%) translateY(1.4%)}}
 @keyframes fogB{0%,100%{transform:translateX(2%) translateY(0)}50%{transform:translateX(-2%) translateY(-1.4%)}}
 @keyframes haloBreath{0%,100%{opacity:.86}50%{opacity:1}}
@@ -147,5 +155,5 @@ footer{position:relative;z-index:1;padding:22px 20px 92px;text-align:center;colo
   .mobile-sticky-cta .btn{display:block;width:100%;text-align:center}
 }
 @media (prefers-reduced-motion: reduce){
-  .atmo,.portal-halo,.rune-ring,.rune,.hero-title{animation:none!important}
+  .atmo,.portal-halo,.rune-ring,.rune,.hero-title,.atmo-dust{animation:none!important}
 }

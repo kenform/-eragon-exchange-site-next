@@ -76,9 +76,20 @@ export default function HomePage() {
           ))}
         </section>
 
+        <section className="section trust-strip reveal">
+          <div className="trust-item"><span>24/7</span><p>Мониторинг сигналов</p></div>
+          <div className="trust-item"><span>3 шага</span><p>От выбора до входа</p></div>
+          <div className="trust-item"><span>0 шума</span><p>Фокус на сильных сетапах</p></div>
+        </section>
+
         <section className="section oath reveal">
           <h2 className="section-title">Клятва Всадника</h2>
           <p>Один вход — одна стратегия. Один риск — один лимит. Один план — без импровизации.</p>
+          <div className="path-steps">
+            <div className="step"><b>01</b><span>Выбери гильдию</span></div>
+            <div className="step"><b>02</b><span>Проверь лимиты</span></div>
+            <div className="step"><b>03</b><span>Открой врата</span></div>
+          </div>
         </section>
       </main>
 

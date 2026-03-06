@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <defs>
+    <radialGradient id="bg" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(32 32) rotate(90) scale(30)">
+      <stop offset="0" stop-color="#102347"/>
+      <stop offset="1" stop-color="#050A17"/>
+    </radialGradient>
+    <filter id="glow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="1.8" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <circle cx="32" cy="32" r="30" fill="url(#bg)"/>
+  <g filter="url(#glow)">
+    <circle cx="32" cy="32" r="27" stroke="#BEE2FF" stroke-width="3"/>
+    <circle cx="32" cy="32" r="20" stroke="#6EB9FF" stroke-opacity="0.85" stroke-width="2"/>
+
+    <path d="M16 32C20 24 28 22 32 22C36 22 44 24 48 32C44 40 36 42 32 42C28 42 20 40 16 32Z" fill="#10284F" stroke="#D7EEFF" stroke-width="1.6"/>
+    <circle cx="32" cy="32" r="4.2" fill="#72C9FF" stroke="#E8F7FF" stroke-width="1"/>
+
+    <path d="M18 28C22 22 28 19.5 32 19" stroke="#D6EEFF" stroke-width="1.7" stroke-linecap="round"/>
+    <path d="M46 36C42 42 36 44.5 32 44.5" stroke="#8CCBFF" stroke-width="1.7" stroke-linecap="round"/>
+    <path d="M32 10.5V15.5" stroke="#D4ECFF" stroke-width="1.8" stroke-linecap="round"/>
+  </g>
+</svg>

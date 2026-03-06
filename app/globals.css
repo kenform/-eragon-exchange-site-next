@@ -65,7 +65,7 @@ body{
 .hero-sigil::before,.hero-sigil::after{content:"";position:absolute;inset:0;border-radius:50%;border:1px solid rgba(188,225,255,.18)}
 .hero-sigil::before{transform:scale(.82)}
 .hero-sigil::after{transform:scale(.62)}
-.hero-sigil-image{position:absolute;left:50%;top:40%;transform:translate(-50%,-50%);width:min(42vw,360px);height:min(42vw,360px);background-position:center;background-size:contain;background-repeat:no-repeat;opacity:.12;filter:blur(1.6px) drop-shadow(0 0 18px rgba(150,208,255,.2));pointer-events:none;z-index:1}
+.hero-sigil-image{position:absolute;left:50%;top:40%;transform:translate(-50%,-50%);width:min(42vw,360px);height:min(42vw,360px);background-position:center;background-size:contain;background-repeat:no-repeat;opacity:.22;filter:blur(.9px) drop-shadow(0 0 20px rgba(160,216,255,.32));mix-blend-mode:screen;pointer-events:none;z-index:1}
 .hero-title{position:relative;z-index:2;margin:0;font-size:clamp(2.2rem,6.6vw,5rem);line-height:1.03;text-shadow:0 0 28px rgba(122,194,255,.28),0 0 58px rgba(115,126,220,.22);animation:titlePulse 6.2s ease-in-out infinite}
 .hero-line{margin:10px 0 0;color:#d9e8fa;font-size:clamp(1.06rem,2.2vw,1.5rem);letter-spacing:.04em}
 .subtitle{margin:12px auto 30px;max-width:760px;color:var(--muted);font-size:1.03rem;line-height:1.56}
@@ -77,7 +77,7 @@ body{
 .portal-arch.outer{top:20%;width:min(56vw,560px);height:min(56vw,560px);border:1px solid rgba(176,218,255,.28);box-shadow:0 0 30px rgba(121,180,255,.18);transform:translateX(calc(var(--mx) * .05)) translateY(calc(var(--my) * .05))}
 .portal-arch.inner{top:24%;width:min(46vw,460px);height:min(46vw,460px);border:1px solid rgba(146,194,255,.3);transform:translateX(calc(var(--mx) * -.04)) translateY(calc(var(--my) * -.04))}
 .portal-ornament{position:absolute;left:50%;top:45%;transform:translate(-50%,-50%);width:min(62vw,640px);height:min(28vw,270px);border-radius:50%;border:1px solid rgba(174,216,255,.14);background:radial-gradient(ellipse at 50% 50%, rgba(166,208,255,.06), rgba(135,160,236,.03) 46%, transparent 72%);mask:linear-gradient(to bottom, rgba(0,0,0,.92), transparent 88%);animation:ornamentDrift 24s ease-in-out infinite}
-.dragon-silhouette-layer{position:absolute;right:6%;bottom:8%;width:min(34vw,420px);height:min(26vw,290px);background-position:center;background-size:contain;background-repeat:no-repeat;opacity:.08;filter:blur(1.4px) saturate(.88);mask:linear-gradient(to top, rgba(0,0,0,.18), rgba(0,0,0,.72) 28%, rgba(0,0,0,.95) 52%, rgba(0,0,0,.62) 74%, rgba(0,0,0,0) 100%);transform:translate3d(calc(var(--mx) * -.05), calc(var(--my) * .04), 0)}
+.dragon-silhouette-layer{position:absolute;right:4%;bottom:6%;width:min(36vw,460px);height:min(28vw,320px);background-position:center;background-size:contain;background-repeat:no-repeat;opacity:.16;filter:blur(.8px) saturate(.92);mix-blend-mode:screen;mask:linear-gradient(to top, rgba(0,0,0,.26), rgba(0,0,0,.76) 24%, rgba(0,0,0,.9) 56%, rgba(0,0,0,.68) 80%, rgba(0,0,0,0) 100%);transform:translate3d(calc(var(--mx) * -.05), calc(var(--my) * .04), 0)}
 .rune-ring{position:absolute;left:50%;top:46%;transform:translate(-50%,-50%) scale(calc(1 + var(--portalProgress) * .05));width:min(76vw,820px);height:min(36vw,320px);border-radius:50%;border:1px solid rgba(170,215,255,.22);mask:linear-gradient(to bottom, rgba(0,0,0,.95), transparent 84%);animation:runeArc 16s linear infinite}
 .moonbeam{position:absolute;top:2%;height:70vh;width:min(18vw,200px);pointer-events:none;opacity:.22;filter:blur(10px);background:linear-gradient(180deg, rgba(203,232,255,.34), rgba(177,216,255,.12) 34%, rgba(160,208,255,.04) 62%, rgba(130,188,255,0) 100%);mix-blend-mode:screen;transform-origin:top center;animation:moonbeamDrift 18s ease-in-out infinite}
 .beam-a{left:32%;--beamRot:-10deg}
@@ -163,8 +163,8 @@ footer{position:relative;z-index:1;padding:22px 20px 92px;text-align:center;colo
   .oath-steps{grid-template-columns:1fr}
   .hero{min-height:74vh}
   .subtitle{font-size:.98rem}
-  .hero-sigil-image{width:min(56vw,280px);height:min(56vw,280px);opacity:.1;filter:blur(1.2px)}
-  .dragon-silhouette-layer{width:min(44vw,250px);height:min(34vw,180px);opacity:.06}
+  .hero-sigil-image{width:min(56vw,280px);height:min(56vw,280px);opacity:.16;filter:blur(.9px)}
+  .dragon-silhouette-layer{width:min(44vw,250px);height:min(34vw,180px);opacity:.1}
 }
 @media (max-width: 820px){
   .mobile-sticky-cta{display:block;position:fixed;left:0;right:0;bottom:0;z-index:5;padding:10px 14px 14px;background:linear-gradient(180deg, rgba(10,14,30,0) 0%, rgba(10,14,30,.88) 26%, rgba(10,14,30,.96) 100%)}

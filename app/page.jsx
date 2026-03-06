@@ -78,29 +78,15 @@ export default function HomePage() {
 
       <header id="hero" className="hero reveal" style={heroBackgroundStyle}>
         <div className="hero-scene" aria-hidden="true">
-          <span className="portal-halo" />
-          <span className="portal-arch outer" />
-          <span className="portal-arch inner" />
-          <span className="portal-ornament" />
           <span
             className="dragon-silhouette-layer"
             aria-hidden="true"
             style={{ backgroundImage: `url(${assets.decor.dragonSilhouette})` }}
           />
-          <span className="moonbeam beam-a" />
-          <span className="moonbeam beam-b" />
-          <span className="moonbeam beam-c" />
-          <span className="light-ray ray-a" />
-          <span className="light-ray ray-b" />
-          <span className="light-ray ray-c" />
-          <span className="forest-depth" />
-          <span className="rune-ring" />
         </div>
 
         <div className="hero-inner">
           <p className="kicker">Elven AI Lab · Ellesméra Gateway</p>
-          <div className="hero-sigil" aria-hidden="true" />
-          <div className="hero-sigil-clean" aria-hidden="true" />
           <h1 className="hero-title">Лунные Врата Эллесмеры</h1>
           <p className="hero-line">Выбери свой путь</p>
           <p className="subtitle">Открой врата и следуй дисциплине.</p>

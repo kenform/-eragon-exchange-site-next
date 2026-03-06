@@ -41,7 +41,9 @@ body{
   radial-gradient(circle at 90% 38%, rgba(182,224,255,.09) 0 1.2px, transparent 3px);
   animation:dustDrift 34s linear infinite}
 .atmo-fog-back{top:12%;height:40vh;background:radial-gradient(ellipse at 50% 50%, rgba(83,148,245,.18), rgba(9,22,58,.02) 64%, transparent 73%);filter:blur(25px);animation:fogA 20s ease-in-out infinite}
+.atmo-fog-mid{top:34%;height:28vh;background:radial-gradient(ellipse at 50% 50%, rgba(118,176,255,.1), rgba(9,22,58,.02) 60%, transparent 74%);filter:blur(20px);animation:fogMid 26s ease-in-out infinite}
 .atmo-fog-front{top:auto;bottom:0;height:34vh;background:radial-gradient(ellipse at 50% 50%, rgba(136,206,255,.14), rgba(9,22,58,.02) 56%, transparent 72%);filter:blur(28px);animation:fogB 24s ease-in-out infinite}
+.atmo-aether{background:radial-gradient(ellipse at 50% 65%, rgba(114,166,255,.08) 0%, rgba(76,122,214,.03) 38%, transparent 68%);animation:aetherPulse 30s ease-in-out infinite}
 .atmo-moon{background:radial-gradient(ellipse at 50% 23%, rgba(150,212,255,.22) 0%, rgba(12,21,46,.2) 48%, rgba(4,8,19,.8) 100%)}
 
 .top-nav{position:sticky;top:10px;z-index:3;padding:10px 14px}
@@ -59,7 +61,7 @@ body{
 .hero{position:relative;min-height:80vh;display:grid;place-items:center;padding:58px 20px 30px;overflow:hidden;z-index:1;transform:translate3d(calc(var(--mx) * .12), calc(var(--my) * .08), 0)}
 .hero-inner{position:relative;max-width:980px;text-align:center;z-index:2}
 .kicker{margin:0 0 12px;letter-spacing:.18em;text-transform:uppercase;color:#cae4ff;font-size:.75rem}
-.hero-sigil{position:relative;margin:0 auto 14px;width:min(34vw,220px);height:min(34vw,220px);border-radius:50%;border:1px solid rgba(176,218,255,.24);background:radial-gradient(circle at 50% 50%, rgba(129,201,255,.14), rgba(127,145,231,.08) 44%, transparent 72%);box-shadow:0 0 30px rgba(124,186,255,.14), inset 0 0 26px rgba(171,210,255,.08);filter:blur(.2px);opacity:.7}
+.hero-sigil{position:relative;margin:0 auto 14px;width:min(34vw,220px);height:min(34vw,220px);border-radius:50%;border:1px solid rgba(176,218,255,.24);background:radial-gradient(circle at 50% 50%, rgba(129,201,255,.14), rgba(127,145,231,.08) 44%, transparent 72%);box-shadow:0 0 30px rgba(124,186,255,.14), inset 0 0 26px rgba(171,210,255,.08);filter:blur(.2px);opacity:.7;animation:sigilBreath 18s ease-in-out infinite}
 .hero-sigil::before,.hero-sigil::after{content:"";position:absolute;inset:0;border-radius:50%;border:1px solid rgba(188,225,255,.18)}
 .hero-sigil::before{transform:scale(.82)}
 .hero-sigil::after{transform:scale(.62)}
@@ -68,11 +70,12 @@ body{
 .subtitle{margin:12px auto 30px;max-width:760px;color:var(--muted);font-size:1.03rem;line-height:1.56}
 .hero-cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
 
-.hero-scene{position:absolute;inset:0;z-index:1;pointer-events:none}
+.hero-scene{position:absolute;inset:0;z-index:1;pointer-events:none;transform:translate3d(calc(var(--mx) * .04), calc(var(--my) * .04), 0)}
 .portal-halo{position:absolute;left:50%;top:43%;transform:translate(-50%,-50%) scale(calc(1 + var(--portalProgress) * .05));width:min(84vw,980px);height:min(44vw,390px);border-radius:50%;background:radial-gradient(ellipse at 50% 50%, rgba(125,197,255,calc(.28 + var(--portalProgress) * .14)) 0%, rgba(57,106,206,.12) 45%, transparent 72%);filter:blur(4px);animation:haloBreath 7s ease-in-out infinite}
 .portal-arch{position:absolute;left:50%;transform:translateX(-50%);border-radius:50% 50% 20% 20%}
 .portal-arch.outer{top:20%;width:min(56vw,560px);height:min(56vw,560px);border:1px solid rgba(176,218,255,.28);box-shadow:0 0 30px rgba(121,180,255,.18);transform:translateX(calc(var(--mx) * .05)) translateY(calc(var(--my) * .05))}
 .portal-arch.inner{top:24%;width:min(46vw,460px);height:min(46vw,460px);border:1px solid rgba(146,194,255,.3);transform:translateX(calc(var(--mx) * -.04)) translateY(calc(var(--my) * -.04))}
+.portal-ornament{position:absolute;left:50%;top:45%;transform:translate(-50%,-50%);width:min(62vw,640px);height:min(28vw,270px);border-radius:50%;border:1px solid rgba(174,216,255,.14);background:radial-gradient(ellipse at 50% 50%, rgba(166,208,255,.06), rgba(135,160,236,.03) 46%, transparent 72%);mask:linear-gradient(to bottom, rgba(0,0,0,.92), transparent 88%);animation:ornamentDrift 24s ease-in-out infinite}
 .rune-ring{position:absolute;left:50%;top:46%;transform:translate(-50%,-50%) scale(calc(1 + var(--portalProgress) * .05));width:min(76vw,820px);height:min(36vw,320px);border-radius:50%;border:1px solid rgba(170,215,255,.22);mask:linear-gradient(to bottom, rgba(0,0,0,.95), transparent 84%);animation:runeArc 16s linear infinite}
 .moonbeam{position:absolute;top:2%;height:70vh;width:min(18vw,200px);pointer-events:none;opacity:.22;filter:blur(10px);background:linear-gradient(180deg, rgba(203,232,255,.34), rgba(177,216,255,.12) 34%, rgba(160,208,255,.04) 62%, rgba(130,188,255,0) 100%);mix-blend-mode:screen;transform-origin:top center;animation:moonbeamDrift 18s ease-in-out infinite}
 .beam-a{left:32%;--beamRot:-10deg}
@@ -142,9 +145,13 @@ footer{position:relative;z-index:1;padding:22px 20px 92px;text-align:center;colo
 @keyframes starDrift{0%{transform:translateY(0)}100%{transform:translateY(-8px)}}
 @keyframes dustDrift{0%{transform:translate3d(0,0,0)}50%{transform:translate3d(0,-10px,0)}100%{transform:translate3d(0,0,0)}}
 @keyframes fogA{0%,100%{transform:translateX(-2%) translateY(0)}50%{transform:translateX(2%) translateY(1.4%)}}
+@keyframes fogMid{0%,100%{transform:translateX(1%) translateY(0)}50%{transform:translateX(-1.5%) translateY(-1.2%)}}
 @keyframes fogB{0%,100%{transform:translateX(2%) translateY(0)}50%{transform:translateX(-2%) translateY(-1.4%)}}
+@keyframes aetherPulse{0%,100%{opacity:.45}50%{opacity:.7}}
 @keyframes moonbeamDrift{0%,100%{transform:translateY(0) rotate(var(--beamRot,0deg));opacity:.18}50%{transform:translateY(6px) rotate(calc(var(--beamRot,0deg) + 0.8deg));opacity:.26}}
 @keyframes haloBreath{0%,100%{opacity:.86}50%{opacity:1}}
+@keyframes sigilBreath{0%,100%{opacity:.62}50%{opacity:.78}}
+@keyframes ornamentDrift{0%,100%{transform:translate(-50%,-50%) scale(1)}50%{transform:translate(-50%,-48%) scale(1.01)}}
 @keyframes titlePulse{0%,100%{text-shadow:0 0 28px rgba(122,194,255,.28),0 0 58px rgba(115,126,220,.22)}50%{text-shadow:0 0 34px rgba(144,214,255,.38),0 0 62px rgba(127,112,236,.3)}}
 @keyframes runeArc{from{transform:translate(-50%,-50%) rotate(0deg)}to{transform:translate(-50%,-50%) rotate(360deg)}}
 @keyframes runeSpin{from{transform:translateX(-40%) rotate(0deg)}to{transform:translateX(40%) rotate(360deg)}}
@@ -160,5 +167,5 @@ footer{position:relative;z-index:1;padding:22px 20px 92px;text-align:center;colo
   .mobile-sticky-cta .btn{display:block;width:100%;text-align:center}
 }
 @media (prefers-reduced-motion: reduce){
-  .atmo,.portal-halo,.rune-ring,.rune,.hero-title,.atmo-dust,.moonbeam{animation:none!important}
+  .atmo,.portal-halo,.rune-ring,.rune,.hero-title,.atmo-dust,.moonbeam,.hero-sigil,.portal-ornament,.atmo-fog-mid,.atmo-aether{animation:none!important}
 }

@@ -9,6 +9,7 @@
   --emerald:#7ecfc0;
   --mx:0px;
   --my:0px;
+  --portalProgress:0;
 }
 *{box-sizing:border-box}
 html,body{margin:0;padding:0}
@@ -57,12 +58,12 @@ body{
 .hero-cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
 
 .hero-scene{position:absolute;inset:0;z-index:1;pointer-events:none}
-.portal-halo{position:absolute;left:50%;top:43%;transform:translate(-50%,-50%);width:min(84vw,980px);height:min(44vw,390px);border-radius:50%;background:radial-gradient(ellipse at 50% 50%, rgba(125,197,255,.28) 0%, rgba(57,106,206,.12) 45%, transparent 72%);filter:blur(4px);animation:haloBreath 7s ease-in-out infinite}
+.portal-halo{position:absolute;left:50%;top:43%;transform:translate(-50%,-50%) scale(calc(1 + var(--portalProgress) * .05));width:min(84vw,980px);height:min(44vw,390px);border-radius:50%;background:radial-gradient(ellipse at 50% 50%, rgba(125,197,255,calc(.28 + var(--portalProgress) * .14)) 0%, rgba(57,106,206,.12) 45%, transparent 72%);filter:blur(4px);animation:haloBreath 7s ease-in-out infinite}
 .portal-arch{position:absolute;left:50%;transform:translateX(-50%);border-radius:50% 50% 20% 20%}
-.portal-arch.outer{top:20%;width:min(56vw,560px);height:min(56vw,560px);border:1px solid rgba(176,218,255,.28);box-shadow:0 0 30px rgba(121,180,255,.18)}
-.portal-arch.inner{top:24%;width:min(46vw,460px);height:min(46vw,460px);border:1px solid rgba(146,194,255,.3)}
-.rune-ring{position:absolute;left:50%;top:46%;transform:translate(-50%,-50%);width:min(76vw,820px);height:min(36vw,320px);border-radius:50%;border:1px solid rgba(170,215,255,.22);mask:linear-gradient(to bottom, rgba(0,0,0,.95), transparent 84%);animation:runeArc 16s linear infinite}
-.light-ray{position:absolute;top:20%;height:42vh;width:2px;background:linear-gradient(180deg, rgba(170,220,255,.35), rgba(170,220,255,0));filter:blur(.4px)}
+.portal-arch.outer{top:20%;width:min(56vw,560px);height:min(56vw,560px);border:1px solid rgba(176,218,255,.28);box-shadow:0 0 30px rgba(121,180,255,.18);transform:translateX(calc(var(--mx) * .05)) translateY(calc(var(--my) * .05))}
+.portal-arch.inner{top:24%;width:min(46vw,460px);height:min(46vw,460px);border:1px solid rgba(146,194,255,.3);transform:translateX(calc(var(--mx) * -.04)) translateY(calc(var(--my) * -.04))}
+.rune-ring{position:absolute;left:50%;top:46%;transform:translate(-50%,-50%) scale(calc(1 + var(--portalProgress) * .05));width:min(76vw,820px);height:min(36vw,320px);border-radius:50%;border:1px solid rgba(170,215,255,.22);mask:linear-gradient(to bottom, rgba(0,0,0,.95), transparent 84%);animation:runeArc 16s linear infinite}
+.light-ray{position:absolute;top:20%;height:42vh;width:2px;background:linear-gradient(180deg, rgba(170,220,255,calc(.35 + var(--portalProgress) * .18)), rgba(170,220,255,0));filter:blur(.4px)}
 .ray-a{left:42%;transform:rotate(-8deg)}
 .ray-b{left:50%}
 .ray-c{left:58%;transform:rotate(8deg)}

@@ -66,6 +66,9 @@ export default function HomePage() {
           <span className="portal-halo" />
           <span className="portal-arch outer" />
           <span className="portal-arch inner" />
+          <span className="moonbeam beam-a" />
+          <span className="moonbeam beam-b" />
+          <span className="moonbeam beam-c" />
           <span className="light-ray ray-a" />
           <span className="light-ray ray-b" />
           <span className="light-ray ray-c" />

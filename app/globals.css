@@ -74,6 +74,10 @@ body{
 .portal-arch.outer{top:20%;width:min(56vw,560px);height:min(56vw,560px);border:1px solid rgba(176,218,255,.28);box-shadow:0 0 30px rgba(121,180,255,.18);transform:translateX(calc(var(--mx) * .05)) translateY(calc(var(--my) * .05))}
 .portal-arch.inner{top:24%;width:min(46vw,460px);height:min(46vw,460px);border:1px solid rgba(146,194,255,.3);transform:translateX(calc(var(--mx) * -.04)) translateY(calc(var(--my) * -.04))}
 .rune-ring{position:absolute;left:50%;top:46%;transform:translate(-50%,-50%) scale(calc(1 + var(--portalProgress) * .05));width:min(76vw,820px);height:min(36vw,320px);border-radius:50%;border:1px solid rgba(170,215,255,.22);mask:linear-gradient(to bottom, rgba(0,0,0,.95), transparent 84%);animation:runeArc 16s linear infinite}
+.moonbeam{position:absolute;top:2%;height:70vh;width:min(18vw,200px);pointer-events:none;opacity:.22;filter:blur(10px);background:linear-gradient(180deg, rgba(203,232,255,.34), rgba(177,216,255,.12) 34%, rgba(160,208,255,.04) 62%, rgba(130,188,255,0) 100%);mix-blend-mode:screen;transform-origin:top center;animation:moonbeamDrift 18s ease-in-out infinite}
+.beam-a{left:32%;--beamRot:-10deg}
+.beam-b{left:48%;width:min(14vw,160px);opacity:.18;--beamRot:-1deg;animation-duration:22s}
+.beam-c{left:61%;--beamRot:11deg;animation-duration:20s}
 .light-ray{position:absolute;top:20%;height:42vh;width:2px;background:linear-gradient(180deg, rgba(170,220,255,calc(.35 + var(--portalProgress) * .18)), rgba(170,220,255,0));filter:blur(.4px)}
 .ray-a{left:42%;transform:rotate(-8deg)}
 .ray-b{left:50%}
@@ -139,6 +143,7 @@ footer{position:relative;z-index:1;padding:22px 20px 92px;text-align:center;colo
 @keyframes dustDrift{0%{transform:translate3d(0,0,0)}50%{transform:translate3d(0,-10px,0)}100%{transform:translate3d(0,0,0)}}
 @keyframes fogA{0%,100%{transform:translateX(-2%) translateY(0)}50%{transform:translateX(2%) translateY(1.4%)}}
 @keyframes fogB{0%,100%{transform:translateX(2%) translateY(0)}50%{transform:translateX(-2%) translateY(-1.4%)}}
+@keyframes moonbeamDrift{0%,100%{transform:translateY(0) rotate(var(--beamRot,0deg));opacity:.18}50%{transform:translateY(6px) rotate(calc(var(--beamRot,0deg) + 0.8deg));opacity:.26}}
 @keyframes haloBreath{0%,100%{opacity:.86}50%{opacity:1}}
 @keyframes titlePulse{0%,100%{text-shadow:0 0 28px rgba(122,194,255,.28),0 0 58px rgba(115,126,220,.22)}50%{text-shadow:0 0 34px rgba(144,214,255,.38),0 0 62px rgba(127,112,236,.3)}}
 @keyframes runeArc{from{transform:translate(-50%,-50%) rotate(0deg)}to{transform:translate(-50%,-50%) rotate(360deg)}}
@@ -155,5 +160,5 @@ footer{position:relative;z-index:1;padding:22px 20px 92px;text-align:center;colo
   .mobile-sticky-cta .btn{display:block;width:100%;text-align:center}
 }
 @media (prefers-reduced-motion: reduce){
-  .atmo,.portal-halo,.rune-ring,.rune,.hero-title,.atmo-dust{animation:none!important}
+  .atmo,.portal-halo,.rune-ring,.rune,.hero-title,.atmo-dust,.moonbeam{animation:none!important}
 }

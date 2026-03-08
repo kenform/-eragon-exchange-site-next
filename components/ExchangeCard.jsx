@@ -43,6 +43,11 @@ export default function ExchangeCard({ item }) {
       <h3>{item.name}</h3>
       <p>{item.desc}</p>
 
+      <div className="gate-meta">
+        <div><span>Risk</span><b>{item.risk}</b></div>
+        <div><span>Style</span><b>{item.style}</b></div>
+      </div>
+
       <div className="gate-actions">
         <a
           className="btn btn-ghost"

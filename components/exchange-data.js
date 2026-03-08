@@ -9,6 +9,8 @@ export const exchanges = [
     refCode: 'W2DDND',
     tone: 'sapphire',
     badge: 'Core Route',
+    risk: '●●○ Low',
+    style: 'Long-term',
     highlight: true,
   },
   {
@@ -21,6 +23,8 @@ export const exchanges = [
     refCode: 'GF5KD76T',
     tone: 'silver',
     badge: 'Adaptive',
+    risk: '●●● Medium',
+    style: 'Adaptive',
     highlight: false,
   },
   {
@@ -33,6 +37,8 @@ export const exchanges = [
     refCode: 'vu6RfizpRR',
     tone: 'violet',
     badge: 'High Potential',
+    risk: '●●●● High',
+    style: 'Early listings',
     highlight: true,
   },
   {
@@ -45,6 +51,8 @@ export const exchanges = [
     refCode: '6B2LY7',
     tone: 'emerald',
     badge: 'Niche Route',
+    risk: '●●● Medium',
+    style: 'Manual selection',
     note: '⚠️ Orbit: сайт и регистрация работают только с VPN.',
     highlight: false,
   },

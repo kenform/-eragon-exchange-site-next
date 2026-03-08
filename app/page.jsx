@@ -68,6 +68,13 @@ export default function HomePage() {
       }
     };
 
+    const onPortalClick = () => {
+      root.classList.add('portal-click-flash');
+      const gates = document.getElementById('gates');
+      if (gates) gates.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      setTimeout(() => root.classList.remove('portal-click-flash'), 520);
+    };
+
     const onClick = (event) => {
       const el = event.target.closest('[data-track="exchange-click"]');
       if (!el) return;
@@ -123,11 +130,13 @@ export default function HomePage() {
     fpsProbe();
 
     const toggleBtn = document.getElementById('cinematic-toggle');
+    const heroScene = document.getElementById('hero-scene');
     const onToggle = () => {
       const off = root.classList.toggle('cinematic-off');
       localStorage.setItem(cinematicKey, off ? 'off' : 'on');
     };
     if (toggleBtn) toggleBtn.addEventListener('click', onToggle);
+    if (heroScene) heroScene.addEventListener('click', onPortalClick);
 
     return () => {
       window.removeEventListener('mousemove', onMove);
@@ -136,6 +145,7 @@ export default function HomePage() {
       document.removeEventListener('click', onCopy, true);
       window.removeEventListener('portal-tone', onPortalTone);
       if (toggleBtn) toggleBtn.removeEventListener('click', onToggle);
+      if (heroScene) heroScene.removeEventListener('click', onPortalClick);
       observer.disconnect();
       if (moveRaf) cancelAnimationFrame(moveRaf);
       if (scrollRaf) cancelAnimationFrame(scrollRaf);
@@ -179,7 +189,7 @@ export default function HomePage() {
       </div>
 
       <header id="hero" className="hero reveal" style={heroBackgroundStyle}>
-        <div className="hero-scene" aria-hidden="true">
+        <div id="hero-scene" className="hero-scene" aria-hidden="true">
           <span className="portal-halo" />
           <span className="portal-ornament" />
           <div className="moonbeams">
@@ -214,14 +224,11 @@ export default function HomePage() {
         </section>
 
         <section className="section rider-path reveal" id="path">
-          <h2>Путь Всадника</h2>
-          <p>
-            В Эллесмере торговля — это не хаос графиков. Это дисциплина. Выбор дома. Следование пути.
-          </p>
-          <div className="path-principles">
-            <span>Discipline</span>
-            <span>Liquidity</span>
-            <span>Longevity</span>
+          <h2>Как работает путь</h2>
+          <div className="path-steps">
+            <div><b>1.</b><span>Выбери Дом</span></div>
+            <div><b>2.</b><span>Перейди через Врата</span></div>
+            <div><b>3.</b><span>Следуй стратегии</span></div>
           </div>
         </section>
 

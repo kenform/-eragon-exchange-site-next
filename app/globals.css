@@ -51,6 +51,16 @@ body{
 :root[data-portal-tone='violet'] .atmo-moon{filter:drop-shadow(0 0 24px rgba(202,170,255,.32)) hue-rotate(10deg)}
 :root[data-portal-tone='emerald'] .atmo-moon{filter:drop-shadow(0 0 24px rgba(122,215,195,.3)) hue-rotate(-12deg)}
 
+:root[data-portal-tone='sapphire'] .portal-halo{filter:blur(4px) saturate(1.15);opacity:.98}
+:root[data-portal-tone='silver'] .portal-halo{filter:blur(4px) saturate(1.03) brightness(1.05);opacity:.96}
+:root[data-portal-tone='violet'] .portal-halo{filter:blur(4px) hue-rotate(12deg) saturate(1.15);opacity:.98}
+:root[data-portal-tone='emerald'] .portal-halo{filter:blur(4px) hue-rotate(-16deg) saturate(1.12);opacity:.98}
+
+:root[data-portal-tone='sapphire'] .portal-arch{border-color:rgba(150,215,255,.42);box-shadow:0 0 24px rgba(120,194,255,.24)}
+:root[data-portal-tone='silver'] .portal-arch{border-color:rgba(220,232,255,.4);box-shadow:0 0 22px rgba(209,224,255,.2)}
+:root[data-portal-tone='violet'] .portal-arch{border-color:rgba(202,174,255,.42);box-shadow:0 0 24px rgba(189,154,255,.24)}
+:root[data-portal-tone='emerald'] .portal-arch{border-color:rgba(153,226,205,.4);box-shadow:0 0 24px rgba(122,215,195,.22)}
+
 .top-nav{position:sticky;top:10px;z-index:3;padding:10px 14px}
 .top-nav-inner{position:relative;max-width:1120px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 12px;border:1px solid rgba(170,210,255,.26);border-radius:999px;background:rgba(10,18,40,.34);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
 .top-nav-inner::after{content:"";position:absolute;left:22px;right:22px;bottom:0;height:1px;background:linear-gradient(90deg, transparent, rgba(180,220,255,.44), transparent);opacity:.78}
@@ -86,8 +96,8 @@ body{
 .hero-cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
 
 .hero-scene{position:absolute;inset:0;z-index:1;pointer-events:none;transform:translate3d(calc(var(--mx) * .04), calc(var(--my) * .04), 0)}
-.portal-halo{position:absolute;left:50%;top:43%;transform:translate(-50%,-50%) scale(calc(1 + var(--portalProgress) * .06));width:min(84vw,980px);height:min(44vw,390px);border-radius:50%;background:radial-gradient(ellipse at 50% 50%, rgba(125,197,255,calc(.32 + var(--portalProgress) * .17)) 0%, rgba(57,106,206,.14) 45%, transparent 72%);filter:blur(4px);animation:haloBreath 7s ease-in-out infinite}
-.portal-arch{position:absolute;left:50%;transform:translateX(-50%);border-radius:50% 50% 20% 20%}
+.portal-halo{position:absolute;left:50%;top:43%;transform:translate(-50%,-50%) scale(calc(1 + var(--portalProgress) * .06));width:min(84vw,980px);height:min(44vw,390px);border-radius:50%;background:radial-gradient(ellipse at 50% 50%, rgba(125,197,255,calc(.32 + var(--portalProgress) * .17)) 0%, rgba(57,106,206,.14) 45%, transparent 72%);filter:blur(4px);animation:haloBreath 7s ease-in-out infinite;transition:filter .45s ease, opacity .45s ease}
+.portal-arch{position:absolute;left:50%;transform:translateX(-50%);border-radius:50% 50% 20% 20%;transition:border-color .45s ease, box-shadow .45s ease, filter .45s ease}
 .portal-arch.outer{top:20%;width:min(56vw,560px);height:min(56vw,560px);border:1px solid rgba(176,218,255,.28);box-shadow:0 0 32px rgba(121,180,255,.2);transform:translateX(calc(var(--mx) * .05)) translateY(calc(var(--my) * .05 - var(--portalProgress) * 7px)) scale(calc(1 + var(--portalProgress) * .035))}
 .portal-arch.inner{top:24%;width:min(46vw,460px);height:min(46vw,460px);border:1px solid rgba(146,194,255,.3);transform:translateX(calc(var(--mx) * -.04)) translateY(calc(var(--my) * -.04 - var(--portalProgress) * 9px)) scale(calc(1 + var(--portalProgress) * .058))}
 .portal-ornament{position:absolute;left:50%;top:45%;transform:translate(-50%,calc(-50% - var(--portalProgress) * 6px)) scale(calc(1 + var(--portalProgress) * .03));width:min(62vw,640px);height:min(28vw,270px);border-radius:50%;border:1px solid rgba(174,216,255,.14);background:radial-gradient(ellipse at 50% 50%, rgba(166,208,255,.06), rgba(135,160,236,.03) 46%, transparent 72%);mask:linear-gradient(to bottom, rgba(0,0,0,.92), transparent 88%);animation:ornamentDrift 24s ease-in-out infinite}
@@ -97,6 +107,7 @@ body{
   mask-mode:alpha;
   transform:translate3d(calc(var(--mx) * -.05), calc(var(--my) * .02 - var(--portalProgress) * 6px), 0)}
 .rune-ring{position:absolute;left:50%;top:46%;transform:translate(-50%,-50%) scale(calc(1 + var(--portalProgress) * .06));width:min(76vw,820px);height:min(36vw,320px);border-radius:50%;border:1px solid rgba(170,215,255,.22);mask:linear-gradient(to bottom, rgba(0,0,0,.95), transparent 84%);animation:runeArc 16s linear infinite}
+.moonbeams{position:absolute;inset:0;pointer-events:none}
 .moonbeam{position:absolute;top:2%;height:70vh;width:min(18vw,200px);pointer-events:none;opacity:calc(.2 + var(--portalProgress) * .14);filter:blur(10px);background:linear-gradient(180deg, rgba(203,232,255,.34), rgba(177,216,255,.12) 34%, rgba(160,208,255,.04) 62%, rgba(130,188,255,0) 100%);mix-blend-mode:screen;transform-origin:top center;animation:moonbeamDrift 18s ease-in-out infinite}
 .beam-a{left:32%;--beamRot:-10deg}
 .beam-b{left:48%;width:min(14vw,160px);opacity:.18;--beamRot:-1deg;animation-duration:22s}

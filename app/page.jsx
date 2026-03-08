@@ -59,6 +59,15 @@ export default function HomePage() {
       { threshold: 0.12 }
     );
 
+    const onPortalTone = (event) => {
+      const tone = event.detail?.tone;
+      if (tone) {
+        root.setAttribute('data-portal-tone', tone);
+      } else {
+        root.removeAttribute('data-portal-tone');
+      }
+    };
+
     const onClick = (event) => {
       const el = event.target.closest('[data-track="exchange-click"]');
       if (!el) return;
@@ -100,6 +109,7 @@ export default function HomePage() {
     document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
     document.addEventListener('click', onClick, true);
     document.addEventListener('click', onCopy, true);
+    window.addEventListener('portal-tone', onPortalTone);
 
     if (supportsHover && !reducedMotion && !root.classList.contains('low-fps')) {
       window.addEventListener('mousemove', onMove, { passive: true });
@@ -124,6 +134,7 @@ export default function HomePage() {
       window.removeEventListener('scroll', onScroll);
       document.removeEventListener('click', onClick, true);
       document.removeEventListener('click', onCopy, true);
+      window.removeEventListener('portal-tone', onPortalTone);
       if (toggleBtn) toggleBtn.removeEventListener('click', onToggle);
       observer.disconnect();
       if (moveRaf) cancelAnimationFrame(moveRaf);
@@ -169,6 +180,16 @@ export default function HomePage() {
 
       <header id="hero" className="hero reveal" style={heroBackgroundStyle}>
         <div className="hero-scene" aria-hidden="true">
+          <span className="portal-halo" />
+          <span className="portal-arch outer" />
+          <span className="portal-arch inner" />
+          <span className="rune-ring" />
+          <span className="portal-ornament" />
+          <div className="moonbeams">
+            <span className="moonbeam" style={{ '--beamRot': '-12deg', left: '18%' }} />
+            <span className="moonbeam" style={{ '--beamRot': '0deg', left: '46%' }} />
+            <span className="moonbeam" style={{ '--beamRot': '12deg', right: '16%' }} />
+          </div>
           <span
             className="dragon-silhouette-layer"
             aria-hidden="true"
@@ -182,6 +203,7 @@ export default function HomePage() {
           <p className="hero-line">Выбери свой путь</p>
           <p className="subtitle">Открой врата и следуй дисциплине.</p>
 
+          <p className="hero-micro">Enter the Gates</p>
           <div className="hero-cta-row">
             <a href="#gates" className="btn btn-primary">Открыть Врата</a>
             <a href="#oath" className="btn btn-secondary">Клятва Всадника</a>
@@ -192,6 +214,18 @@ export default function HomePage() {
       <main>
         <section className="section reveal intro-runes">
           <div className="intro-pill">Ellesméra · Arya · Sacred Geometry · Disciplined Path</div>
+        </section>
+
+        <section className="section rider-path reveal" id="path">
+          <h2>Путь Всадника</h2>
+          <p>
+            В Эллесмере торговля — это не хаос графиков. Это дисциплина. Выбор дома. Следование пути.
+          </p>
+          <div className="path-principles">
+            <span>Discipline</span>
+            <span>Liquidity</span>
+            <span>Longevity</span>
+          </div>
         </section>
 
         <section id="gates" className="section section-gates reveal">
@@ -221,8 +255,15 @@ export default function HomePage() {
         <a href="#gates" className="btn btn-primary">Открыть Врата</a>
       </div>
 
-      <footer className="reveal">
-        <p>🌿 Elven AI Lab</p>
+      <footer className="reveal site-footer">
+        <p className="footer-brand">Elven AI Lab</p>
+        <p className="footer-sub">Sacred Market Discipline</p>
+        <p className="footer-note">Built by Riders of the Sapphire Path</p>
+        <div className="footer-links">
+          <a href="https://github.com" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a href="https://t.me/Elven_Ai_Lab" target="_blank" rel="noopener noreferrer">Telegram</a>
+          <a href="https://docs.openclaw.ai" target="_blank" rel="noopener noreferrer">Docs</a>
+        </div>
       </footer>
     </>
   );

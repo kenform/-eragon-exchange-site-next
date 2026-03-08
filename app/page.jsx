@@ -181,9 +181,6 @@ export default function HomePage() {
       <header id="hero" className="hero reveal" style={heroBackgroundStyle}>
         <div className="hero-scene" aria-hidden="true">
           <span className="portal-halo" />
-          <span className="portal-arch outer" />
-          <span className="portal-arch inner" />
-          <span className="rune-ring" />
           <span className="portal-ornament" />
           <div className="moonbeams">
             <span className="moonbeam" style={{ '--beamRot': '-12deg', left: '18%' }} />

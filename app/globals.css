@@ -58,6 +58,7 @@ body{
 .top-nav nav a:hover::after{transform:scaleX(1);opacity:1}
 .mini-cta{text-decoration:none;color:#eaf5ff;font-size:.84rem;border:1px solid rgba(168,209,255,.45);padding:5px 10px;border-radius:999px;background:rgba(56,92,165,.26);box-shadow:0 0 0 rgba(132,199,255,0);transition:box-shadow .26s ease, border-color .26s ease, transform .2s ease}
 .mini-cta:hover{border-color:rgba(187,223,255,.72);box-shadow:0 0 16px rgba(122,192,255,.28);transform:translateY(-1px)}
+.mini-cta-toggle{cursor:pointer}
 
 .hero{position:relative;min-height:80vh;display:grid;place-items:center;padding:58px 20px 22px;overflow:hidden;z-index:1;transform:translate3d(calc(var(--mx) * .12), calc(var(--my) * .08), 0)}
 .hero::before{content:"";position:absolute;inset:-1px 0 auto 0;height:26vh;pointer-events:none;background:linear-gradient(180deg, rgba(8,14,30,.46) 0%, rgba(8,14,30,.2) 44%, rgba(8,14,30,0) 100%);z-index:1}
@@ -141,6 +142,9 @@ body{
 .gate p{margin:0 0 12px;color:#adbed7;line-height:1.45}
 .btn-ghost{border:1px solid rgba(168,208,255,.64);color:#d9edff;background:rgba(42,73,133,.22);box-shadow:0 0 0 rgba(130,198,255,0);transition:background .24s ease, box-shadow .24s ease, border-color .24s ease, transform .2s ease}
 .btn-ghost:hover{background:rgba(79,122,196,.28);border-color:rgba(192,228,255,.82);box-shadow:0 0 18px rgba(126,197,255,.28);transform:translateY(-1px)}
+.gate-actions{display:flex;gap:8px;flex-wrap:wrap}
+.btn-copy{padding:10px 12px;border-radius:10px;border:1px solid rgba(207,221,255,.46);background:rgba(255,255,255,.08);color:#e8f2ff;font-weight:600;cursor:pointer;transition:background .22s ease, border-color .22s ease}
+.btn-copy:hover{background:rgba(255,255,255,.14);border-color:rgba(225,238,255,.68)}
 .note{margin-top:10px;font-size:.88rem;color:#d6dbff;line-height:1.35}
 
 .oath{text-align:center;padding:14px 20px 56px;border:1px solid rgba(146,194,255,.2);border-radius:18px;background:linear-gradient(180deg, rgba(26,38,74,.24), rgba(13,22,43,.2));backdrop-filter:blur(4px)}
@@ -186,6 +190,29 @@ footer{position:relative;z-index:1;padding:22px 20px 92px;text-align:center;colo
   .mobile-sticky-cta{display:block;position:fixed;left:0;right:0;bottom:0;z-index:5;padding:10px 14px 14px;background:linear-gradient(180deg, rgba(10,14,30,0) 0%, rgba(10,14,30,.88) 26%, rgba(10,14,30,.96) 100%)}
   .mobile-sticky-cta .btn{display:block;width:100%;text-align:center}
 }
+:root.cinematic-off .atmo-stars,
+:root.cinematic-off .atmo-dust,
+:root.cinematic-off .atmo-fog-mid,
+:root.cinematic-off .atmo-fog-front,
+:root.cinematic-off .moonbeams,
+:root.cinematic-off .dragon-silhouette-layer {
+  opacity: 0 !important;
+}
+
+:root.cinematic-off .hero,
+:root.low-fps .hero {
+  transform: none !important;
+}
+
+:root.low-fps .atmo-noise,
+:root.low-fps .atmo-dust,
+:root.low-fps .atmo-fog-mid,
+:root.low-fps .atmo-fog-front,
+:root.low-fps .moonbeam,
+:root.low-fps .rune {
+  animation: none !important;
+}
+
 @media (prefers-reduced-motion: reduce){
   .atmo,.portal-halo,.rune-ring,.rune,.hero-title,.atmo-dust,.moonbeam,.hero-sigil-clean,.portal-ornament,.atmo-fog-mid,.atmo-aether{animation:none!important}
 }

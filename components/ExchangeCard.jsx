@@ -1,4 +1,13 @@
 export default function ExchangeCard({ item }) {
+  const onCopy = async () => {
+    if (!item.refCode) return;
+    try {
+      await navigator.clipboard.writeText(item.refCode);
+    } catch {
+      // noop
+    }
+  };
+
   return (
     <article className={`gate reveal tone-${item.tone} ${item.highlight ? 'highlighted' : ''}`}>
       <div className="gate-topline" aria-hidden="true" />
@@ -14,9 +23,30 @@ export default function ExchangeCard({ item }) {
       <h3>{item.name}</h3>
       <p>{item.desc}</p>
 
-      <a className="btn btn-ghost" href={item.href} target="_blank" rel="noopener noreferrer">
-        Войти в гильдию
-      </a>
+      <div className="gate-actions">
+        <a
+          className="btn btn-ghost"
+          href={item.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          data-track="exchange-click"
+          data-exchange={item.id}
+        >
+          Войти в гильдию
+        </a>
+        {item.refCode ? (
+          <button
+            type="button"
+            className="btn btn-copy"
+            onClick={onCopy}
+            data-track="copy-ref"
+            data-exchange={item.id}
+            aria-label={`Скопировать код ${item.name}`}
+          >
+            Скопировать код
+          </button>
+        ) : null}
+      </div>
 
       {item.note ? <p className="note">{item.note}</p> : null}
     </article>

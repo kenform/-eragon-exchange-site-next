@@ -8,15 +8,34 @@ import { assets } from '../src/config/assets';
 export default function HomePage() {
   useEffect(() => {
     const root = document.documentElement;
+    const supportsHover = window.matchMedia('(hover: hover)').matches;
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    const onMove = (e) => {
-      const x = (e.clientX / window.innerWidth - 0.5) * 14;
-      const y = (e.clientY / window.innerHeight - 0.5) * 10;
-      root.style.setProperty('--mx', `${x}px`);
-      root.style.setProperty('--my', `${y}px`);
+    let moveRaf = null;
+    let scrollRaf = null;
+    let fpsRaf = null;
+    let moveX = 0;
+    let moveY = 0;
+    let lastX = 999;
+    let lastY = 999;
+
+    const applyMove = () => {
+      moveRaf = null;
+      if (Math.abs(moveX - lastX) < 0.15 && Math.abs(moveY - lastY) < 0.15) return;
+      lastX = moveX;
+      lastY = moveY;
+      root.style.setProperty('--mx', `${moveX}px`);
+      root.style.setProperty('--my', `${moveY}px`);
     };
 
-    const onScroll = () => {
+    const onMove = (e) => {
+      moveX = (e.clientX / window.innerWidth - 0.5) * 14;
+      moveY = (e.clientY / window.innerHeight - 0.5) * 10;
+      if (!moveRaf) moveRaf = requestAnimationFrame(applyMove);
+    };
+
+    const applyScroll = () => {
+      scrollRaf = null;
       const hero = document.getElementById('hero');
       if (!hero) return;
       const h = hero.offsetHeight || 1;
@@ -25,20 +44,91 @@ export default function HomePage() {
       root.style.setProperty('--portalShift', `${(progress * 8).toFixed(2)}px`);
     };
 
+    const onScroll = () => {
+      if (!scrollRaf) scrollRaf = requestAnimationFrame(applyScroll);
+    };
+
     const observer = new IntersectionObserver(
-      (entries) => entries.forEach((entry) => entry.isIntersecting && entry.target.classList.add('in')),
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add('in');
+          observer.unobserve(entry.target);
+        });
+      },
       { threshold: 0.12 }
     );
 
+    const onClick = (event) => {
+      const el = event.target.closest('[data-track="exchange-click"]');
+      if (!el) return;
+      const exchange = el.getAttribute('data-exchange') || 'unknown';
+      const key = `eragon_click_${exchange}`;
+      const curr = Number(localStorage.getItem(key) || '0') + 1;
+      localStorage.setItem(key, String(curr));
+    };
+
+    const onCopy = (event) => {
+      const el = event.target.closest('[data-track="copy-ref"]');
+      if (!el) return;
+      const exchange = el.getAttribute('data-exchange') || 'unknown';
+      const key = `eragon_copy_${exchange}`;
+      const curr = Number(localStorage.getItem(key) || '0') + 1;
+      localStorage.setItem(key, String(curr));
+    };
+
+    const fpsProbe = () => {
+      if (reducedMotion) return;
+      let frames = 0;
+      let start = performance.now();
+      const tick = (now) => {
+        frames += 1;
+        if (now - start >= 2500) {
+          const fps = (frames * 1000) / (now - start);
+          if (fps < 45) root.classList.add('low-fps');
+          return;
+        }
+        fpsRaf = requestAnimationFrame(tick);
+      };
+      fpsRaf = requestAnimationFrame(tick);
+    };
+
+    const cinematicKey = 'eragon_cinematic_mode';
+    const savedCinematic = localStorage.getItem(cinematicKey);
+    if (savedCinematic === 'off') root.classList.add('cinematic-off');
+
     document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
-    window.addEventListener('mousemove', onMove, { passive: true });
+    document.addEventListener('click', onClick, true);
+    document.addEventListener('click', onCopy, true);
+
+    if (supportsHover && !reducedMotion && !root.classList.contains('low-fps')) {
+      window.addEventListener('mousemove', onMove, { passive: true });
+    } else {
+      root.style.setProperty('--mx', '0px');
+      root.style.setProperty('--my', '0px');
+    }
+
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
+    fpsProbe();
+
+    const toggleBtn = document.getElementById('cinematic-toggle');
+    const onToggle = () => {
+      const off = root.classList.toggle('cinematic-off');
+      localStorage.setItem(cinematicKey, off ? 'off' : 'on');
+    };
+    if (toggleBtn) toggleBtn.addEventListener('click', onToggle);
 
     return () => {
       window.removeEventListener('mousemove', onMove);
       window.removeEventListener('scroll', onScroll);
+      document.removeEventListener('click', onClick, true);
+      document.removeEventListener('click', onCopy, true);
+      if (toggleBtn) toggleBtn.removeEventListener('click', onToggle);
       observer.disconnect();
+      if (moveRaf) cancelAnimationFrame(moveRaf);
+      if (scrollRaf) cancelAnimationFrame(scrollRaf);
+      if (fpsRaf) cancelAnimationFrame(fpsRaf);
     };
   }, []);
 
@@ -72,6 +162,7 @@ export default function HomePage() {
             <a href="#gates">Дома</a>
             <a href="#oath">Клятва</a>
           </nav>
+          <button id="cinematic-toggle" className="mini-cta mini-cta-toggle" type="button">FX</button>
           <a href="#gates" className="mini-cta">Войти</a>
         </div>
       </div>

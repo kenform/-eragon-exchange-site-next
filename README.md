@@ -1,25 +1,23 @@
-# Eragon Exchange Site (Next.js)
+# -eragon-exchange-site-next
 
-## Запуск
+Next.js exchange landing project (portfolio/demo).
+
+## Overview
+- Purpose: concise, maintainable project structure
+- Status: active
+
+## Quick links
+- Repository: https://github.com/kenform/-eragon-exchange-site-next
+- Live demo: https://eragon-exchange-site-next-kenformgod-6184s-projects.vercel.app
+
+## Getting started
 ```bash
-cd projects/eragon-exchange-site-next
+# install deps
 npm install
+
+# run locally
 npm run dev
 ```
 
-Открой: `http://localhost:3000`
-
-## Прод
-```bash
-npm run build
-npm run start
-```
-
-## Deploy
-- **Vercel:** проект готов, есть `vercel.json`
-- **Netlify:** проект готов, есть `netlify.toml` + Next plugin
-
-## Что внутри
-- App Router (`app/`)
-- Компонент карточки биржи
-- Данные бирж в `components/exchange-data.js` (удобно менять ссылки)
+## Notes
+- This README follows a clean portfolio-friendly format.

@@ -1,29 +1,73 @@
 'use client';
 
+import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import ExchangeCard from '../components/ExchangeCard';
-import { exchanges, stats, steps } from '../components/exchange-data';
+import { exchanges } from '../components/exchange-data';
+
+const navLinks = [
+  { href: '#routes', label: 'Маршруты' },
+  { href: '#process', label: 'Процесс' },
+  { href: '#rules', label: 'Правила' },
+];
+
+const steps = [
+  {
+    number: '01',
+    title: 'Сравни маршрут',
+    text: 'Посмотри назначение каждой биржи и выбери подходящий сценарий входа.',
+  },
+  {
+    number: '02',
+    title: 'Проверь условия',
+    text: 'Перед регистрацией проверь комиссии, ограничения, KYC и доступность в регионе.',
+  },
+  {
+    number: '03',
+    title: 'Входи по плану',
+    text: 'Работай только с лимитами, 2FA, риск-менеджментом и понятным торговым планом.',
+  },
+];
 
 export default function HomePage() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     document.body.classList.toggle('menu-open', menuOpen);
-    return () => document.body.classList.remove('menu-open');
+
+    const onKeyDown = (event) => {
+      if (event.key === 'Escape') setMenuOpen(false);
+    };
+
+    window.addEventListener('keydown', onKeyDown);
+
+    return () => {
+      document.body.classList.remove('menu-open');
+      window.removeEventListener('keydown', onKeyDown);
+    };
   }, [menuOpen]);
 
   useEffect(() => {
-    const items = document.querySelectorAll('[data-reveal]');
+    const nodes = document.querySelectorAll('.reveal');
+
+    if (!('IntersectionObserver' in window)) {
+      nodes.forEach((node) => node.classList.add('is-visible'));
+      return;
+    }
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) entry.target.classList.add('is-visible');
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
         });
       },
       { threshold: 0.14 }
     );
 
-    items.forEach((item) => observer.observe(item));
+    nodes.forEach((node) => observer.observe(node));
 
     return () => observer.disconnect();
   }, []);
@@ -31,24 +75,33 @@ export default function HomePage() {
   const closeMenu = () => setMenuOpen(false);
 
   return (
-    <>
+    <div className="site-shell">
       <header className="site-header">
         <div className="container header-inner">
-          <a className="brand" href="#hero" onClick={closeMenu}>
-            <span>Eragon</span>
-            <small>Exchange</small>
+          <a className="logo" href="#top" aria-label="Eragon Exchange">
+            <span className="logo__icon">
+              <Image src="/images/brand/eragon_exchange_square_icon.png" alt="" width={44} height={44} priority />
+            </span>
+            <span className="logo__text">
+              <strong>Eragon</strong>
+              <span>Exchange</span>
+            </span>
           </a>
 
           <nav className="desktop-nav" aria-label="Основная навигация">
-            <a href="#routes">Маршруты</a>
-            <a href="#process">Процесс</a>
-            <a href="#safety">Правила</a>
+            {navLinks.map((link) => (
+              <a key={link.href} href={link.href}>
+                {link.label}
+              </a>
+            ))}
           </nav>
 
-          <a className="header-cta" href="#routes">Выбрать биржу</a>
+          <a className="header-cta" href="#routes">
+            Выбрать биржу
+          </a>
 
           <button
-            className="burger"
+            className={`burger ${menuOpen ? 'is-open' : ''}`}
             type="button"
             aria-label={menuOpen ? 'Закрыть меню' : 'Открыть меню'}
             aria-expanded={menuOpen}
@@ -56,124 +109,192 @@ export default function HomePage() {
           >
             <span />
             <span />
+            <span />
           </button>
-        </div>
-
-        <div className="mobile-panel">
-          <nav aria-label="Мобильная навигация">
-            <a href="#routes" onClick={closeMenu}>Маршруты</a>
-            <a href="#process" onClick={closeMenu}>Процесс</a>
-            <a href="#safety" onClick={closeMenu}>Правила</a>
-            <a href="#routes" className="mobile-cta" onClick={closeMenu}>Выбрать биржу</a>
-          </nav>
         </div>
       </header>
 
-      <main>
-        <section id="hero" className="hero">
-          <div className="hero-bg" aria-hidden="true">
-            <span className="orb orb-a" />
-            <span className="orb orb-b" />
-            <span className="grid-glow" />
-          </div>
+      <div className={`menu-backdrop ${menuOpen ? 'is-open' : ''}`} onClick={closeMenu} />
 
+      <aside className={`mobile-menu ${menuOpen ? 'is-open' : ''}`} aria-label="Мобильное меню">
+        <div className="mobile-menu__top">
+          <a className="logo logo--menu" href="#top" onClick={closeMenu}>
+            <span className="logo__icon">
+              <Image src="/images/brand/eragon_exchange_square_icon.png" alt="" width={44} height={44} />
+            </span>
+            <span className="logo__text">
+              <strong>Eragon</strong>
+              <span>Exchange</span>
+            </span>
+          </a>
+
+          <button type="button" className="mobile-close" aria-label="Закрыть меню" onClick={closeMenu}>
+            ×
+          </button>
+        </div>
+
+        <nav className="mobile-menu__links">
+          {navLinks.map((link) => (
+            <a key={link.href} href={link.href} onClick={closeMenu}>
+              {link.label}
+            </a>
+          ))}
+        </nav>
+
+        <a className="mobile-menu__cta" href="#routes" onClick={closeMenu}>
+          Выбрать маршрут
+        </a>
+      </aside>
+
+      <main id="top">
+        <section className="hero section">
+          <div className="hero__aurora" aria-hidden="true" />
           <div className="container hero-grid">
-            <div className="hero-copy" data-reveal>
-              <p className="eyebrow">Crypto routes · referral gateway</p>
-              <h1>Eragon Exchange — аккуратный вход в крипто-маршруты</h1>
-              <p className="hero-text">
-                Сравни биржи, выбери подходящий маршрут и переходи по готовой ссылке без хаоса,
-                лишних вкладок и случайных решений.
+            <div className="hero-content reveal">
+              <p className="eyebrow">Crypto routes · Referral gateway</p>
+              <h1>
+                Eragon Exchange — аккуратный вход в крипто-маршруты
+              </h1>
+              <p className="hero-lead">
+                Сравни биржи, выбери подходящий маршрут и переходи по готовой ссылке без хаоса, лишних вкладок и случайных решений.
               </p>
 
               <div className="hero-actions">
-                <a className="btn primary" href="#routes">Смотреть маршруты</a>
-                <a className="btn secondary" href="#safety">Правила входа</a>
+                <a className="btn btn--primary" href="#routes">
+                  Смотреть маршруты
+                </a>
+                <a className="btn btn--ghost" href="#rules">
+                  Правила входа
+                </a>
+              </div>
+
+              <div className="hero-stats" aria-label="Ключевые параметры">
+                <span>
+                  <strong>4</strong>
+                  маршрута
+                </span>
+                <span>
+                  <strong>0</strong>
+                  лишнего шума
+                </span>
+                <span>
+                  <strong>24/7</strong>
+                  доступ
+                </span>
               </div>
             </div>
 
-            <div className="portal-card" data-reveal>
-              <div className="portal-ring" aria-hidden="true" />
-              <p>Route map</p>
-              <strong>4 exchange gates</strong>
-              <span>Bybit · Bitget · MEXC · Ourbit</span>
-            </div>
-          </div>
-        </section>
-
-        <section className="stats container" aria-label="Краткая статистика">
-          {stats.map(([value, label]) => (
-            <div className="stat" key={label} data-reveal>
-              <b>{value}</b>
-              <span>{label}</span>
-            </div>
-          ))}
-        </section>
-
-        <section id="routes" className="section container">
-          <div className="section-head" data-reveal>
-            <p className="eyebrow">Exchange gates</p>
-            <h2>Выбери биржу под свой сценарий</h2>
-            <span>
-              Это не финансовая рекомендация. Сайт помогает быстро перейти к нужной платформе и
-              держать структуру перед глазами.
-            </span>
-          </div>
-
-          <div className="exchange-grid">
-            {exchanges.map((item) => (
-              <ExchangeCard key={item.id} item={item} />
-            ))}
-          </div>
-        </section>
-
-        <section id="process" className="section container split-section">
-          <div className="section-head left" data-reveal>
-            <p className="eyebrow">Disciplined path</p>
-            <h2>Не просто ссылка, а порядок входа</h2>
-            <span>
-              Перед регистрацией проверь региональные ограничения, комиссии, KYC и свои лимиты.
-              Хороший маршрут начинается не с клика, а с плана.
-            </span>
-          </div>
-
-          <div className="steps">
-            {steps.map(([num, title, text]) => (
-              <div className="step" key={num} data-reveal>
-                <b>{num}</b>
-                <div>
-                  <h3>{title}</h3>
-                  <p>{text}</p>
-                </div>
+            <div className="hero-visual reveal">
+              <div className="brand-orb">
+                <Image
+                  src="/images/brand/eragon_exchange_square_icon-1.png"
+                  alt="Eragon Exchange icon"
+                  width={520}
+                  height={520}
+                  priority
+                />
               </div>
-            ))}
+
+              <div className="brand-card">
+                <Image
+                  src="/images/brand/eragon_exchange_card_mockup.png"
+                  alt="Eragon Exchange brand card"
+                  width={884}
+                  height={512}
+                  priority
+                />
+              </div>
+
+              <div className="route-panel">
+                <span>Route map</span>
+                <strong>4 exchange gates</strong>
+                <p>Bybit · Bitget · MEXC · Ourbit</p>
+              </div>
+            </div>
           </div>
         </section>
 
-        <section id="safety" className="section container safety" data-reveal>
-          <p className="eyebrow">Risk note</p>
-          <h2>Крипта требует дисциплины</h2>
-          <p>
-            Используй отдельные пароли, 2FA, лимиты риска и не заходи в сделки без понятного
-            сценария. Любая биржа — это инструмент, а не гарантия результата.
-          </p>
-          <a className="btn primary" href="#routes">Вернуться к маршрутам</a>
+        <section id="routes" className="section routes-section">
+          <div className="container">
+            <div className="section-head reveal">
+              <p className="eyebrow">Exchange gates</p>
+              <h2>Выбери биржу под свой сценарий</h2>
+              <p>
+                Это не финансовая рекомендация. Сайт помогает быстро перейти к нужной платформе и держать структуру перед глазами.
+              </p>
+            </div>
+
+            <div className="exchange-grid">
+              {exchanges.map((item) => (
+                <ExchangeCard key={item.id} item={item} />
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section id="process" className="section process-section">
+          <div className="container process-grid">
+            <div className="process-copy reveal">
+              <p className="eyebrow">Disciplined path</p>
+              <h2>Не просто ссылка, а порядок входа</h2>
+              <p>
+                Перед регистрацией проверь региональные ограничения, комиссии, KYC и свои лимиты. Хороший маршрут начинается не с клика, а с плана.
+              </p>
+            </div>
+
+            <div className="steps">
+              {steps.map((step) => (
+                <article className="step-card reveal" key={step.number}>
+                  <span>{step.number}</span>
+                  <div>
+                    <h3>{step.title}</h3>
+                    <p>{step.text}</p>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section id="rules" className="section rules-section">
+          <div className="container">
+            <div className="risk-card reveal">
+              <p className="eyebrow">Risk note</p>
+              <h2>Крипта требует дисциплины</h2>
+              <p>
+                Используй отдельные пароли, 2FA, лимиты риска и не заходи в сделки без понятного сценария. Любая биржа — это инструмент, а не гарантия результата.
+              </p>
+              <a className="btn btn--primary" href="#routes">
+                Вернуться к маршрутам
+              </a>
+            </div>
+          </div>
         </section>
       </main>
 
       <footer className="site-footer">
-        <div className="container footer-inner">
+        <div className="container footer-grid">
           <div>
-            <strong>Eragon Exchange</strong>
+            <a className="logo footer-logo" href="#top">
+              <span className="logo__icon">
+                <Image src="/images/brand/eragon_exchange_square_icon.png" alt="" width={40} height={40} />
+              </span>
+              <span className="logo__text">
+                <strong>Eragon</strong>
+                <span>Exchange</span>
+              </span>
+            </a>
             <p>Referral gateway for structured crypto routes.</p>
           </div>
-          <nav>
-            <a href="#hero">Наверх</a>
+
+          <nav aria-label="Навигация в подвале">
             <a href="#routes">Биржи</a>
-            <a href="#safety">Правила</a>
+            <a href="#process">Процесс</a>
+            <a href="#rules">Правила</a>
+            <a href="#top">Наверх</a>
           </nav>
         </div>
       </footer>
-    </>
+    </div>
   );
 }

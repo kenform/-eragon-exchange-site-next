@@ -1,8 +1,14 @@
 import './globals.css';
 
 export const metadata = {
-  title: 'Eragon Exchange — crypto route gateway',
-  description: 'Современный referral gateway для выбора крипто-бирж и аккуратного входа по маршрутам.',
+  metadataBase: new URL('https://eragon-exchange-site-next-kenformgod-6184s-projects.vercel.app'),
+  title: 'Eragon Exchange — referral route gateway',
+  description: 'Аккуратный переходник по крипто-биржам: маршруты, ссылки, правила входа и риск-дисциплина.',
+  openGraph: {
+    title: 'Eragon Exchange',
+    description: 'Routes. Gateway. Market access.',
+    images: ['/images/brand/eragon_exchange_card_mockup.png'],
+  },
   icons: {
     icon: [
       { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },

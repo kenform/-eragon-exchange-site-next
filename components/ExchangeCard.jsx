@@ -1,27 +1,26 @@
 export default function ExchangeCard({ item }) {
   return (
-    <article className={`exchange-card tone-${item.tone} ${item.featured ? 'is-featured' : ''}`}>
-      <div className="card-orbit" aria-hidden="true" />
-      <div className="card-top">
-        <span className="sigil">{item.sigil}</span>
-        <span className="badge">{item.badge}</span>
+    <article className={`exchange-card exchange-card--${item.tone} ${item.featured ? 'exchange-card--featured' : ''}`}>
+      <div className="exchange-card__top">
+        <span className="exchange-card__number">{item.number}</span>
+        <span className="exchange-card__badge">{item.badge}</span>
       </div>
 
-      <p className="house">{item.house}</p>
+      <p className="exchange-card__route">{item.route}</p>
       <h3>{item.name}</h3>
-      <p className="card-desc">{item.desc}</p>
+      <p className="exchange-card__text">{item.description}</p>
 
-      <ul className="point-list">
+      <ul className="exchange-card__list" aria-label={`Преимущества ${item.name}`}>
         {item.points.map((point) => (
           <li key={point}>{point}</li>
         ))}
       </ul>
 
-      {item.note ? <p className="note">{item.note}</p> : null}
+      {item.note && <p className="exchange-card__note">{item.note}</p>}
 
-      <div className="card-bottom">
+      <div className="exchange-card__bottom">
         <span>REF: {item.refCode}</span>
-        <a href={item.href} target="_blank" rel="noopener noreferrer">
+        <a href={item.href} target="_blank" rel="noreferrer">
           Открыть
         </a>
       </div>

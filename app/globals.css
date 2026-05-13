@@ -1333,3 +1333,513 @@ h2 {
     font-size: 32px;
   }
 }
+
+/* Eragon visual balance bugfix */
+
+/* readable scrollbar */
+html {
+  scrollbar-color: #73f2ef #07111d;
+  scrollbar-width: thin;
+}
+
+body::-webkit-scrollbar {
+  width: 12px;
+}
+
+body::-webkit-scrollbar-track {
+  background: #07111d;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #71eaff, #83ffd7);
+  border: 3px solid #07111d;
+  border-radius: 999px;
+}
+
+/* header balance */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 80;
+  padding: 12px 0;
+  background: linear-gradient(180deg, rgba(4, 9, 17, 0.96), rgba(4, 9, 17, 0.72) 72%, rgba(4, 9, 17, 0));
+  backdrop-filter: blur(12px);
+}
+
+.header-inner {
+  min-height: 68px;
+}
+
+.header-cta {
+  min-width: 178px;
+  min-height: 48px;
+  color: #03101a;
+  background: linear-gradient(135deg, #91f0ff, #91ffd8);
+  box-shadow: 0 16px 46px rgba(95, 235, 238, 0.18);
+}
+
+.header-cta:hover {
+  color: #03101a;
+  background: linear-gradient(135deg, #b9f7ff, #a5ffe1);
+  transform: translateY(-1px);
+}
+
+.burger {
+  flex: 0 0 auto;
+  color: #eaf6ff;
+  background: rgba(9, 25, 42, 0.9);
+  border-color: rgba(117, 234, 255, 0.28);
+}
+
+.burger:hover {
+  background: rgba(14, 38, 61, 0.95);
+  border-color: rgba(126, 255, 218, 0.46);
+}
+
+/* hero desktop: less giant, more premium */
+.hero {
+  padding-top: clamp(44px, 5vw, 74px);
+  padding-bottom: clamp(56px, 7vw, 96px);
+}
+
+.hero-grid {
+  max-width: 1180px;
+  align-items: center;
+  gap: clamp(42px, 6vw, 86px);
+}
+
+.hero-content {
+  max-width: 590px;
+}
+
+.hero h1,
+.hero-title {
+  max-width: 610px;
+  font-size: clamp(54px, 5.35vw, 78px);
+  line-height: 0.94;
+  letter-spacing: -0.07em;
+  text-wrap: balance;
+}
+
+.hero-subtitle {
+  max-width: 560px;
+  font-size: clamp(38px, 4.6vw, 58px);
+  line-height: 0.98;
+  letter-spacing: -0.06em;
+  text-wrap: balance;
+}
+
+.hero-lead {
+  max-width: 560px;
+  font-size: clamp(18px, 1.55vw, 22px);
+  line-height: 1.5;
+}
+
+.hero-actions {
+  gap: 14px;
+  margin-top: 30px;
+}
+
+.hero .btn,
+.hero-actions .btn {
+  min-height: 54px;
+  padding: 0 26px;
+  border-radius: 999px;
+  font-weight: 800;
+}
+
+.hero .btn--primary,
+.hero-actions .btn--primary {
+  color: #03101a;
+  background: linear-gradient(135deg, #7feaff, #8bffd7);
+}
+
+.hero .btn--primary:hover,
+.hero-actions .btn--primary:hover {
+  color: #03101a;
+  background: linear-gradient(135deg, #b4f6ff, #a7ffe3);
+  transform: translateY(-2px);
+}
+
+.hero .btn--ghost,
+.hero-actions .btn--ghost {
+  color: #eaf6ff;
+  border: 1px solid rgba(130, 219, 255, 0.46);
+  background: rgba(10, 25, 42, 0.64);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.035);
+}
+
+.hero .btn--ghost:hover,
+.hero-actions .btn--ghost:hover {
+  color: #ffffff;
+  border-color: rgba(142, 255, 218, 0.72);
+  background: rgba(20, 48, 70, 0.86);
+  transform: translateY(-2px);
+}
+
+.hero-stats {
+  margin-top: 30px;
+  max-width: 620px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.hero-stats span {
+  min-height: 104px;
+  padding: 18px 20px;
+}
+
+/* hero right visual */
+.hero-visual {
+  min-height: 430px;
+}
+
+.hero-logo-card {
+  width: min(190px, 34vw);
+  right: 4px;
+  top: 56px;
+  opacity: 0.96;
+}
+
+.hero-brand-card {
+  width: min(530px, 100%);
+  right: 0;
+  bottom: 80px;
+  border-radius: 28px;
+}
+
+.route-panel {
+  left: 20px;
+  bottom: 34px;
+  width: min(310px, 72%);
+  padding: 24px;
+}
+
+/* sections */
+.section {
+  padding-top: clamp(72px, 8vw, 118px);
+  padding-bottom: clamp(72px, 8vw, 118px);
+}
+
+.section-head {
+  margin-bottom: clamp(36px, 5vw, 58px);
+}
+
+.section-head h2,
+.process-copy h2,
+.risk-card h2 {
+  font-size: clamp(42px, 5vw, 68px);
+  line-height: 1;
+  letter-spacing: -0.06em;
+  text-wrap: balance;
+}
+
+.section-head p,
+.process-copy p,
+.risk-card p {
+  font-size: clamp(18px, 1.7vw, 22px);
+  line-height: 1.55;
+}
+
+/* exchange cards: cleaner rhythm */
+.exchange-grid {
+  gap: 22px;
+}
+
+.exchange-card {
+  min-height: 430px;
+  padding: 26px;
+}
+
+.exchange-card h3 {
+  font-size: clamp(30px, 2.7vw, 38px);
+  letter-spacing: -0.055em;
+}
+
+.exchange-card__bottom a,
+.exchange-card .card-link {
+  color: #03101a;
+  background: linear-gradient(135deg, #8cecff, #91ffd9);
+}
+
+.exchange-card__bottom a:hover,
+.exchange-card .card-link:hover {
+  color: #03101a;
+  background: linear-gradient(135deg, #b8f8ff, #a9ffe5);
+}
+
+/* process/risk/footer */
+.process-grid {
+  align-items: center;
+  gap: clamp(38px, 7vw, 86px);
+}
+
+.step-card {
+  padding: clamp(24px, 3vw, 34px);
+}
+
+.risk-card {
+  max-width: 1080px;
+  padding: clamp(42px, 7vw, 76px);
+}
+
+.site-footer {
+  padding-top: 42px;
+  padding-bottom: 42px;
+}
+
+/* mobile menu polish */
+.menu-backdrop {
+  cursor: pointer;
+}
+
+.mobile-menu {
+  width: min(390px, calc(100vw - 26px));
+  right: 13px;
+  top: 13px;
+  min-height: calc(100svh - 26px);
+  padding: 28px;
+  border-radius: 28px;
+  background:
+    radial-gradient(circle at 20% 0%, rgba(93, 224, 255, 0.16), transparent 34%),
+    linear-gradient(180deg, rgba(6, 25, 40, 0.98), rgba(3, 14, 25, 0.98));
+  box-shadow: 0 28px 90px rgba(0, 0, 0, 0.62);
+}
+
+.mobile-menu__top {
+  align-items: center;
+}
+
+.mobile-menu__links {
+  gap: 18px;
+  margin-top: 54px;
+}
+
+.mobile-menu__links a {
+  font-size: clamp(34px, 8vw, 48px);
+  line-height: 1.04;
+  letter-spacing: -0.05em;
+}
+
+.mobile-menu__links a:hover {
+  color: #76f1ff;
+}
+
+.mobile-menu__cta {
+  min-height: 52px;
+  color: #03101a;
+  background: linear-gradient(135deg, #8cecff, #91ffd9);
+}
+
+.mobile-menu__cta:hover {
+  color: #03101a;
+  background: linear-gradient(135deg, #b8f8ff, #a9ffe5);
+}
+
+/* tablet */
+@media (max-width: 1080px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-content {
+    max-width: 780px;
+  }
+
+  .hero h1,
+  .hero-title {
+    max-width: 780px;
+    font-size: clamp(54px, 8vw, 82px);
+  }
+
+  .hero-visual {
+    width: min(720px, 100%);
+    margin: 0 auto;
+  }
+
+  .exchange-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* real mobile */
+@media (max-width: 720px) {
+  .site-header {
+    padding: 8px 0;
+  }
+
+  .header-inner {
+    min-height: 58px;
+    padding: 8px;
+    border-radius: 24px;
+  }
+
+  .header-cta {
+    min-width: 150px;
+    min-height: 46px;
+    padding: 0 16px;
+    font-size: 14px;
+  }
+
+  .burger {
+    width: 46px;
+    height: 46px;
+  }
+
+  .hero {
+    padding-top: 32px;
+    padding-bottom: 56px;
+  }
+
+  .hero-grid {
+    gap: 28px;
+  }
+
+  .hero h1,
+  .hero-title {
+    max-width: 100%;
+    font-size: clamp(42px, 13vw, 60px);
+    line-height: 0.96;
+    letter-spacing: -0.065em;
+  }
+
+  .hero-subtitle {
+    font-size: clamp(30px, 9.5vw, 44px);
+  }
+
+  .hero-lead {
+    font-size: 17px;
+  }
+
+  .hero-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .hero .btn,
+  .hero-actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .hero-stats {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .hero-stats span {
+    min-height: 78px;
+    padding: 14px;
+  }
+
+  .hero-stats b {
+    font-size: 32px;
+  }
+
+  .hero-visual {
+    min-height: 352px;
+  }
+
+  .hero-logo-card {
+    width: 126px;
+    top: 8px;
+    right: 6px;
+  }
+
+  .hero-brand-card {
+    bottom: 88px;
+    border-radius: 22px;
+  }
+
+  .route-panel {
+    left: 14px;
+    bottom: 6px;
+    width: min(286px, calc(100% - 28px));
+    padding: 20px;
+    border-radius: 22px;
+  }
+
+  .route-panel strong {
+    font-size: 38px;
+  }
+
+  .section {
+    padding-top: 64px;
+    padding-bottom: 64px;
+  }
+
+  .section-head {
+    text-align: left;
+  }
+
+  .section-head h2,
+  .process-copy h2,
+  .risk-card h2 {
+    font-size: clamp(34px, 10vw, 46px);
+  }
+
+  .section-head p,
+  .process-copy p,
+  .risk-card p {
+    font-size: 17px;
+  }
+
+  .exchange-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .exchange-card {
+    min-height: auto;
+    padding: 24px;
+  }
+
+  .process-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .risk-card {
+    text-align: left;
+    border-radius: 28px;
+  }
+
+  .site-footer .footer-grid {
+    gap: 24px;
+  }
+}
+
+@media (max-width: 420px) {
+  .logo__text strong {
+    font-size: 11px;
+  }
+
+  .logo__text span {
+    font-size: 9px;
+  }
+
+  .header-cta {
+    min-width: 132px;
+    padding: 0 12px;
+    font-size: 13px;
+  }
+
+  .hero h1,
+  .hero-title {
+    font-size: clamp(38px, 12.5vw, 52px);
+  }
+
+  .hero-visual {
+    min-height: 326px;
+  }
+
+  .mobile-menu {
+    width: calc(100vw - 22px);
+    right: 11px;
+    top: 11px;
+    min-height: calc(100svh - 22px);
+    padding: 24px;
+  }
+
+  .mobile-menu__links a {
+    font-size: 34px;
+  }
+}

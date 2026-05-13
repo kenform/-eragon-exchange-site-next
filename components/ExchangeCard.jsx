@@ -10,7 +10,7 @@ export default function ExchangeCard({ item }) {
       <h3>{item.name}</h3>
       <p className="exchange-card__text">{item.description}</p>
 
-      <ul className="exchange-card__list" aria-label={`Преимущества ${item.name}`}>
+      <ul className="exchange-card__list">
         {item.points.map((point) => (
           <li key={point}>{point}</li>
         ))}

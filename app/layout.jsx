@@ -1,7 +1,6 @@
 import './globals.css';
 
 export const metadata = {
-  metadataBase: new URL('https://eragon-exchange-site-next-kenformgod-6184s-projects.vercel.app'),
   title: 'Eragon Exchange — referral route gateway',
   description: 'Аккуратный переходник по крипто-биржам: маршруты, ссылки, правила входа и риск-дисциплина.',
   openGraph: {

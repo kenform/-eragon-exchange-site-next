@@ -15,17 +15,17 @@ const steps = [
   {
     number: '01',
     title: 'Сравни маршрут',
-    text: 'Посмотри назначение каждой биржи и выбери подходящий сценарий входа.',
+    text: 'Посмотри назначение каждой биржи и выбери сценарий, который подходит под твою задачу.',
   },
   {
     number: '02',
     title: 'Проверь условия',
-    text: 'Перед регистрацией проверь комиссии, ограничения, KYC и доступность в регионе.',
+    text: 'Перед регистрацией проверь комиссии, региональные ограничения, KYC и доступность платформы.',
   },
   {
     number: '03',
     title: 'Входи по плану',
-    text: 'Работай только с лимитами, 2FA, риск-менеджментом и понятным торговым планом.',
+    text: 'Используй 2FA, лимиты риска, отдельные пароли и не открывай сделки без понятного сценария.',
   },
 ];
 
@@ -58,17 +58,15 @@ export default function HomePage() {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('is-visible');
-            observer.unobserve(entry.target);
-          }
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
         });
       },
-      { threshold: 0.14 }
+      { threshold: 0.12 }
     );
 
     nodes.forEach((node) => observer.observe(node));
-
     return () => observer.disconnect();
   }, []);
 
@@ -148,13 +146,13 @@ export default function HomePage() {
 
       <main id="top">
         <section className="hero section">
-          <div className="hero__aurora" aria-hidden="true" />
+          <div className="hero__glow" aria-hidden="true" />
+
           <div className="container hero-grid">
             <div className="hero-content reveal">
               <p className="eyebrow">Crypto routes · Referral gateway</p>
-              <h1>
-                Eragon Exchange — аккуратный вход в крипто-маршруты
-              </h1>
+              <h1>Eragon Exchange</h1>
+              <p className="hero-subtitle">аккуратный вход в крипто-маршруты</p>
               <p className="hero-lead">
                 Сравни биржи, выбери подходящий маршрут и переходи по готовой ссылке без хаоса, лишних вкладок и случайных решений.
               </p>
@@ -185,7 +183,7 @@ export default function HomePage() {
             </div>
 
             <div className="hero-visual reveal">
-              <div className="brand-orb">
+              <div className="hero-logo-card">
                 <Image
                   src="/images/brand/eragon_exchange_square_icon-1.png"
                   alt="Eragon Exchange icon"
@@ -195,7 +193,7 @@ export default function HomePage() {
                 />
               </div>
 
-              <div className="brand-card">
+              <div className="hero-brand-card">
                 <Image
                   src="/images/brand/eragon_exchange_card_mockup.png"
                   alt="Eragon Exchange brand card"
@@ -238,7 +236,7 @@ export default function HomePage() {
               <p className="eyebrow">Disciplined path</p>
               <h2>Не просто ссылка, а порядок входа</h2>
               <p>
-                Перед регистрацией проверь региональные ограничения, комиссии, KYC и свои лимиты. Хороший маршрут начинается не с клика, а с плана.
+                Хороший маршрут начинается не с клика, а с понятного плана: условия, лимиты, доступность, безопасность и контроль риска.
               </p>
             </div>
 

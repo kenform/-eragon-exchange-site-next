@@ -1843,3 +1843,297 @@ body::-webkit-scrollbar-thumb {
     font-size: 34px;
   }
 }
+/* Eragon crypto hub structure polish */
+body.menu-open {
+  overflow: hidden;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  color: #f1f8ff;
+  text-decoration: none;
+}
+
+.brand img {
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  object-fit: cover;
+  box-shadow: 0 0 26px rgba(88, 229, 255, 0.22);
+}
+
+.brand span {
+  display: grid;
+  line-height: 0.9;
+}
+
+.brand strong {
+  font-size: 13px;
+  letter-spacing: -0.04em;
+}
+
+.brand em {
+  color: #65ddff;
+  font-size: 12px;
+  font-style: normal;
+  letter-spacing: -0.02em;
+}
+
+.social-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.social-card {
+  min-height: 158px;
+  padding: 22px;
+  border: 1px solid rgba(123, 220, 255, 0.2);
+  border-radius: 28px;
+  background:
+    radial-gradient(circle at 20% 0%, rgba(98, 231, 255, 0.14), transparent 42%),
+    rgba(8, 20, 34, 0.76);
+  color: #eef7ff;
+  text-decoration: none;
+  transition: transform 0.22s ease, border-color 0.22s ease, background 0.22s ease;
+}
+
+.social-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(136, 255, 223, 0.52);
+  background:
+    radial-gradient(circle at 20% 0%, rgba(126, 255, 223, 0.2), transparent 46%),
+    rgba(10, 28, 45, 0.92);
+}
+
+.social-card span {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  margin-bottom: 24px;
+  border-radius: 16px;
+  color: #06121f;
+  background: linear-gradient(135deg, #80ebff, #8dffd8);
+  font-weight: 900;
+}
+
+.social-card strong,
+.social-card small {
+  display: block;
+}
+
+.social-card strong {
+  margin-bottom: 8px;
+  font-size: 20px;
+}
+
+.social-card small {
+  color: #b8c9d9;
+}
+
+.section--soft {
+  background:
+    radial-gradient(circle at 80% 20%, rgba(107, 102, 255, 0.12), transparent 34%),
+    linear-gradient(180deg, rgba(10, 22, 38, 0.24), rgba(6, 12, 22, 0));
+}
+
+.exchange-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.exchange-card__top {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+.exchange-card__type,
+.exchange-card__badge {
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  padding: 0 14px;
+  border: 1px solid rgba(119, 218, 255, 0.24);
+  border-radius: 999px;
+  color: #75eaff;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.exchange-card h3 {
+  margin: 0 0 18px;
+}
+
+.exchange-card__description {
+  color: #d2e1ef;
+}
+
+.exchange-card li {
+  color: #f3fbff;
+}
+
+.exchange-card__note {
+  margin-top: auto;
+  color: #ffd86f;
+}
+
+.exchange-card__bottom {
+  margin-top: auto;
+}
+
+.exchange-card__bottom a {
+  text-decoration: none;
+}
+
+.exchange-card__bottom a[href="#"] {
+  opacity: 0.72;
+  pointer-events: none;
+}
+
+.vpn-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1fr);
+  gap: clamp(28px, 6vw, 72px);
+  align-items: start;
+}
+
+.vpn-cards {
+  display: grid;
+  gap: 18px;
+}
+
+.vpn-card {
+  padding: clamp(26px, 4vw, 38px);
+  border: 1px solid rgba(122, 226, 255, 0.22);
+  border-radius: 32px;
+  background:
+    radial-gradient(circle at 100% 0%, rgba(135, 255, 214, 0.16), transparent 38%),
+    rgba(8, 22, 38, 0.82);
+}
+
+.vpn-card span {
+  color: #6cecff;
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.vpn-card h3 {
+  margin: 16px 0;
+  font-size: clamp(30px, 4vw, 52px);
+  line-height: 0.95;
+  letter-spacing: -0.06em;
+}
+
+.vpn-card p {
+  color: #c9d7e5;
+  font-size: 18px;
+  line-height: 1.55;
+}
+
+.vpn-card a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  margin-top: 18px;
+  padding: 0 22px;
+  border-radius: 999px;
+  color: #06121f;
+  background: linear-gradient(135deg, #85ecff, #8effd8);
+  font-weight: 900;
+  text-decoration: none;
+}
+
+.info-card {
+  max-width: 1040px;
+  padding: clamp(34px, 6vw, 76px);
+  border: 1px solid rgba(112, 215, 255, 0.22);
+  border-radius: 36px;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(121, 255, 219, 0.14), transparent 42%),
+    rgba(9, 24, 40, 0.84);
+  text-align: center;
+}
+
+.info-card h2 {
+  margin: 14px auto 18px;
+  max-width: 780px;
+  font-size: clamp(42px, 6vw, 76px);
+  line-height: 0.96;
+  letter-spacing: -0.065em;
+}
+
+.info-card p {
+  max-width: 780px;
+  margin: 0 auto 28px;
+  color: #cad8e7;
+  font-size: clamp(18px, 2vw, 22px);
+  line-height: 1.55;
+}
+
+.menu-backdrop {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.22s ease;
+}
+
+.menu-open .menu-backdrop {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.mobile-menu {
+  transform: translateX(112%) scale(0.98);
+  opacity: 0;
+  transition: transform 0.32s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.22s ease;
+}
+
+.menu-open .mobile-menu {
+  transform: translateX(0) scale(1);
+  opacity: 1;
+}
+
+@media (max-width: 960px) {
+  .social-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .vpn-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .brand img {
+    width: 38px;
+    height: 38px;
+    border-radius: 12px;
+  }
+
+  .social-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .social-card {
+    min-height: 126px;
+  }
+
+  .info-card {
+    text-align: left;
+  }
+
+  .info-card p {
+    margin-left: 0;
+  }
+
+  .mobile-menu__links a {
+    font-size: clamp(34px, 11vw, 48px);
+  }
+}

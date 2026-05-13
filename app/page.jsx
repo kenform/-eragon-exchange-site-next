@@ -1,298 +1,237 @@
 'use client';
 
-import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import ExchangeCard from '../components/ExchangeCard';
-import { exchanges } from '../components/exchange-data';
-
-const navLinks = [
-  { href: '#routes', label: 'Маршруты' },
-  { href: '#process', label: 'Процесс' },
-  { href: '#rules', label: 'Правила' },
-];
-
-const steps = [
-  {
-    number: '01',
-    title: 'Сравни маршрут',
-    text: 'Посмотри назначение каждой биржи и выбери сценарий, который подходит под твою задачу.',
-  },
-  {
-    number: '02',
-    title: 'Проверь условия',
-    text: 'Перед регистрацией проверь комиссии, региональные ограничения, KYC и доступность платформы.',
-  },
-  {
-    number: '03',
-    title: 'Входи по плану',
-    text: 'Используй 2FA, лимиты риска, отдельные пароли и не открывай сделки без понятного сценария.',
-  },
-];
+import { cexExchanges, dexTools, socialLinks, vpnLinks } from '../components/exchange-data';
 
 export default function HomePage() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
-    document.body.classList.toggle('menu-open', menuOpen);
-
-    const onKeyDown = (event) => {
-      if (event.key === 'Escape') setMenuOpen(false);
+    const onMove = (event) => {
+      const x = (event.clientX / window.innerWidth - 0.5) * 14;
+      const y = (event.clientY / window.innerHeight - 0.5) * 10;
+      document.documentElement.style.setProperty('--mx', `${x}px`);
+      document.documentElement.style.setProperty('--my', `${y}px`);
     };
-
-    window.addEventListener('keydown', onKeyDown);
-
-    return () => {
-      document.body.classList.remove('menu-open');
-      window.removeEventListener('keydown', onKeyDown);
-    };
-  }, [menuOpen]);
-
-  useEffect(() => {
-    const nodes = document.querySelectorAll('.reveal');
-
-    if (!('IntersectionObserver' in window)) {
-      nodes.forEach((node) => node.classList.add('is-visible'));
-      return;
-    }
 
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
-          entry.target.classList.add('is-visible');
-          observer.unobserve(entry.target);
+          if (entry.isIntersecting) entry.target.classList.add('is-visible');
         });
       },
       { threshold: 0.12 }
     );
 
-    nodes.forEach((node) => observer.observe(node));
-    return () => observer.disconnect();
+    document.querySelectorAll('.reveal').forEach((item) => observer.observe(item));
+    window.addEventListener('mousemove', onMove);
+
+    return () => {
+      window.removeEventListener('mousemove', onMove);
+      observer.disconnect();
+    };
   }, []);
+
+  useEffect(() => {
+    document.body.classList.toggle('menu-open', menuOpen);
+    return () => document.body.classList.remove('menu-open');
+  }, [menuOpen]);
 
   const closeMenu = () => setMenuOpen(false);
 
   return (
-    <div className="site-shell">
+    <>
       <header className="site-header">
         <div className="container header-inner">
-          <a className="logo" href="#top" aria-label="Eragon Exchange">
-            <span className="logo__icon">
-              <Image src="/images/brand/eragon_exchange_square_icon.png" alt="" width={44} height={44} priority />
-            </span>
-            <span className="logo__text">
-              <strong>Eragon</strong>
-              <span>Exchange</span>
+          <a className="brand" href="#top" aria-label="Eragon Exchange">
+            <img src="/images/brand/eragon_exchange_square_icon.png" alt="" />
+            <span>
+              <strong>ERAGON</strong>
+              <em>EXCHANGE</em>
             </span>
           </a>
 
           <nav className="desktop-nav" aria-label="Основная навигация">
-            {navLinks.map((link) => (
-              <a key={link.href} href={link.href}>
-                {link.label}
-              </a>
-            ))}
+            <a href="#social">Ссылки</a>
+            <a href="#cex">CEX</a>
+            <a href="#dex">DEX</a>
+            <a href="#vpn">VPN</a>
           </nav>
 
-          <a className="header-cta" href="#routes">
-            Выбрать биржу
-          </a>
+          <a className="header-cta" href="#cex">Выбрать биржу</a>
 
-          <button
-            className={`burger ${menuOpen ? 'is-open' : ''}`}
-            type="button"
-            aria-label={menuOpen ? 'Закрыть меню' : 'Открыть меню'}
-            aria-expanded={menuOpen}
-            onClick={() => setMenuOpen((value) => !value)}
-          >
-            <span />
-            <span />
-            <span />
+          <button className="burger" type="button" aria-label="Открыть меню" aria-expanded={menuOpen} onClick={() => setMenuOpen(true)}>
+            <span></span>
+            <span></span>
+            <span></span>
           </button>
         </div>
       </header>
 
-      <div className={`menu-backdrop ${menuOpen ? 'is-open' : ''}`} onClick={closeMenu} />
+      <div className="menu-backdrop" onClick={closeMenu}></div>
 
-      <aside className={`mobile-menu ${menuOpen ? 'is-open' : ''}`} aria-label="Мобильное меню">
+      <aside className="mobile-menu" aria-hidden={!menuOpen}>
         <div className="mobile-menu__top">
-          <a className="logo logo--menu" href="#top" onClick={closeMenu}>
-            <span className="logo__icon">
-              <Image src="/images/brand/eragon_exchange_square_icon.png" alt="" width={44} height={44} />
-            </span>
-            <span className="logo__text">
-              <strong>Eragon</strong>
-              <span>Exchange</span>
+          <a className="brand" href="#top" onClick={closeMenu}>
+            <img src="/images/brand/eragon_exchange_square_icon.png" alt="" />
+            <span>
+              <strong>ERAGON</strong>
+              <em>EXCHANGE</em>
             </span>
           </a>
-
-          <button type="button" className="mobile-close" aria-label="Закрыть меню" onClick={closeMenu}>
-            ×
-          </button>
+          <button className="mobile-close" type="button" aria-label="Закрыть меню" onClick={closeMenu}>×</button>
         </div>
 
         <nav className="mobile-menu__links">
-          {navLinks.map((link) => (
-            <a key={link.href} href={link.href} onClick={closeMenu}>
-              {link.label}
-            </a>
-          ))}
+          <a href="#social" onClick={closeMenu}>Ссылки</a>
+          <a href="#cex" onClick={closeMenu}>CEX биржи</a>
+          <a href="#dex" onClick={closeMenu}>DEX / On-chain</a>
+          <a href="#vpn" onClick={closeMenu}>VPN</a>
         </nav>
 
-        <a className="mobile-menu__cta" href="#routes" onClick={closeMenu}>
-          Выбрать маршрут
-        </a>
+        <a className="mobile-menu__cta" href="#cex" onClick={closeMenu}>Выбрать маршрут</a>
       </aside>
 
       <main id="top">
-        <section className="hero section">
-          <div className="hero__glow" aria-hidden="true" />
-
+        <section className="hero">
           <div className="container hero-grid">
             <div className="hero-content reveal">
-              <p className="eyebrow">Crypto routes · Referral gateway</p>
-              <h1>Eragon Exchange</h1>
-              <p className="hero-subtitle">аккуратный вход в крипто-маршруты</p>
+              <p className="eyebrow">Crypto routes · Referral hub</p>
+              <h1>Eragon Exchange — твой крипто-портал</h1>
               <p className="hero-lead">
-                Сравни биржи, выбери подходящий маршрут и переходи по готовой ссылке без хаоса, лишних вкладок и случайных решений.
+                CEX и DEX биржи, VPN-доступ, Telegram, Discord, YouTube, GitHub и полезные ссылки в одном месте.
+                Без хаоса, лишних вкладок и потерянных реферальных маршрутов.
               </p>
 
               <div className="hero-actions">
-                <a className="btn btn--primary" href="#routes">
-                  Смотреть маршруты
-                </a>
-                <a className="btn btn--ghost" href="#rules">
-                  Правила входа
-                </a>
+                <a className="btn btn--primary" href="#cex">Смотреть биржи</a>
+                <a className="btn btn--ghost" href="#social">Мои ссылки</a>
               </div>
 
-              <div className="hero-stats" aria-label="Ключевые параметры">
-                <span>
-                  <strong>4</strong>
-                  маршрута
-                </span>
-                <span>
-                  <strong>0</strong>
-                  лишнего шума
-                </span>
-                <span>
-                  <strong>24/7</strong>
-                  доступ
-                </span>
+              <div className="hero-stats">
+                <span><b>{cexExchanges.length}</b><small>CEX</small></span>
+                <span><b>{dexTools.length}</b><small>DEX</small></span>
+                <span><b>{socialLinks.length}</b><small>links</small></span>
               </div>
             </div>
 
             <div className="hero-visual reveal">
-              <div className="hero-logo-card">
-                <Image
-                  src="/images/brand/eragon_exchange_square_icon-1.png"
-                  alt="Eragon Exchange icon"
-                  width={520}
-                  height={520}
-                  priority
-                />
-              </div>
-
-              <div className="hero-brand-card">
-                <Image
-                  src="/images/brand/eragon_exchange_card_mockup.png"
-                  alt="Eragon Exchange brand card"
-                  width={884}
-                  height={512}
-                  priority
-                />
-              </div>
-
+              <img className="hero-logo-card" src="/images/brand/eragon_exchange_square_icon-1.png" alt="Eragon Exchange icon" />
+              <img className="hero-brand-card" src="/images/brand/eragon_exchange_card_mockup.png" alt="Eragon Exchange card" />
               <div className="route-panel">
-                <span>Route map</span>
-                <strong>4 exchange gates</strong>
-                <p>Bybit · Bitget · MEXC · Ourbit</p>
+                <span>ACCESS MAP</span>
+                <strong>CEX / DEX / VPN</strong>
+                <p>All routes in one clean hub</p>
               </div>
             </div>
           </div>
         </section>
 
-        <section id="routes" className="section routes-section">
+        <section id="social" className="section social-section">
           <div className="container">
             <div className="section-head reveal">
-              <p className="eyebrow">Exchange gates</p>
-              <h2>Выбери биржу под свой сценарий</h2>
-              <p>
-                Это не финансовая рекомендация. Сайт помогает быстро перейти к нужной платформе и держать структуру перед глазами.
-              </p>
+              <p className="eyebrow">Social hub</p>
+              <h2>Мои основные ссылки</h2>
+              <p>Telegram-канал, Discord, портфолио, GitHub и YouTube. Сейчас стоят заглушки — позже заменим на реальные URL.</p>
+            </div>
+
+            <div className="social-grid">
+              {socialLinks.map((link) => (
+                <a className="social-card reveal" key={link.id} href={link.href}>
+                  <span>{link.icon}</span>
+                  <strong>{link.label}</strong>
+                  <small>{link.value}</small>
+                </a>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section id="cex" className="section">
+          <div className="container">
+            <div className="section-head reveal">
+              <p className="eyebrow">Centralized exchanges</p>
+              <h2>CEX биржи</h2>
+              <p>Централизованные биржи и реферальные маршруты. Текущие рабочие ссылки сохраняем, новые добавим позже.</p>
             </div>
 
             <div className="exchange-grid">
-              {exchanges.map((item) => (
+              {cexExchanges.map((item) => (
                 <ExchangeCard key={item.id} item={item} />
               ))}
             </div>
           </div>
         </section>
 
-        <section id="process" className="section process-section">
-          <div className="container process-grid">
-            <div className="process-copy reveal">
-              <p className="eyebrow">Disciplined path</p>
-              <h2>Не просто ссылка, а порядок входа</h2>
-              <p>
-                Хороший маршрут начинается не с клика, а с понятного плана: условия, лимиты, доступность, безопасность и контроль риска.
-              </p>
+        <section id="dex" className="section section--soft">
+          <div className="container">
+            <div className="section-head reveal">
+              <p className="eyebrow">DEX / On-chain</p>
+              <h2>DEX и сетевые маршруты</h2>
+              <p>Отдельная зона для децентрализованных бирж, агрегаторов, мостов, сетей и будущих on-chain инструментов.</p>
             </div>
 
-            <div className="steps">
-              {steps.map((step) => (
-                <article className="step-card reveal" key={step.number}>
-                  <span>{step.number}</span>
-                  <div>
-                    <h3>{step.title}</h3>
-                    <p>{step.text}</p>
-                  </div>
+            <div className="exchange-grid exchange-grid--dex">
+              {dexTools.map((item) => (
+                <ExchangeCard key={item.id} item={item} />
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section id="vpn" className="section vpn-section">
+          <div className="container vpn-grid">
+            <div className="section-head reveal">
+              <p className="eyebrow">VPN access</p>
+              <h2>VPN для доступа к маршрутам</h2>
+              <p>Отдельный блок под два типа VPN: whitelist-решение для крипто-сервисов и обычный VPN для повседневного доступа.</p>
+            </div>
+
+            <div className="vpn-cards">
+              {vpnLinks.map((item) => (
+                <article className="vpn-card reveal" key={item.id}>
+                  <span>{item.badge}</span>
+                  <h3>{item.title}</h3>
+                  <p>{item.description}</p>
+                  <a href={item.href}>Открыть</a>
                 </article>
               ))}
             </div>
           </div>
         </section>
 
-        <section id="rules" className="section rules-section">
-          <div className="container">
-            <div className="risk-card reveal">
-              <p className="eyebrow">Risk note</p>
-              <h2>Крипта требует дисциплины</h2>
-              <p>
-                Используй отдельные пароли, 2FA, лимиты риска и не заходи в сделки без понятного сценария. Любая биржа — это инструмент, а не гарантия результата.
-              </p>
-              <a className="btn btn--primary" href="#routes">
-                Вернуться к маршрутам
-              </a>
-            </div>
+        <section className="section info-section">
+          <div className="container info-card reveal">
+            <p className="eyebrow">Important</p>
+            <h2>Это не финансовая рекомендация</h2>
+            <p>
+              Eragon Exchange — это личная витрина ссылок и маршрутов. Перед регистрацией проверяй условия,
+              комиссии, KYC, региональные ограничения и правила конкретной платформы.
+            </p>
+            <a className="btn btn--primary" href="#cex">Вернуться к биржам</a>
           </div>
         </section>
       </main>
 
       <footer className="site-footer">
-        <div className="container footer-grid">
-          <div>
-            <a className="logo footer-logo" href="#top">
-              <span className="logo__icon">
-                <Image src="/images/brand/eragon_exchange_square_icon.png" alt="" width={40} height={40} />
-              </span>
-              <span className="logo__text">
-                <strong>Eragon</strong>
-                <span>Exchange</span>
-              </span>
-            </a>
-            <p>Referral gateway for structured crypto routes.</p>
-          </div>
-
-          <nav aria-label="Навигация в подвале">
-            <a href="#routes">Биржи</a>
-            <a href="#process">Процесс</a>
-            <a href="#rules">Правила</a>
-            <a href="#top">Наверх</a>
+        <div className="container footer-inner">
+          <a className="brand" href="#top">
+            <img src="/images/brand/eragon_exchange_square_icon.png" alt="" />
+            <span>
+              <strong>ERAGON</strong>
+              <em>EXCHANGE</em>
+            </span>
+          </a>
+          <p>Crypto referral hub: CEX, DEX, VPN and useful links.</p>
+          <nav>
+            <a href="#social">Ссылки</a>
+            <a href="#cex">CEX</a>
+            <a href="#dex">DEX</a>
+            <a href="#vpn">VPN</a>
           </nav>
         </div>
       </footer>
-    </div>
+    </>
   );
 }

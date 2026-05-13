@@ -1,112 +1,178 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import ExchangeCard from '../components/ExchangeCard';
-import { exchanges } from '../components/exchange-data';
+import { exchanges, stats, steps } from '../components/exchange-data';
 
 export default function HomePage() {
-  useEffect(() => {
-    const onMove = (e) => {
-      const x = (e.clientX / window.innerWidth - 0.5) * 14;
-      const y = (e.clientY / window.innerHeight - 0.5) * 10;
-      document.documentElement.style.setProperty('--mx', `${x}px`);
-      document.documentElement.style.setProperty('--my', `${y}px`);
-    };
+  const [menuOpen, setMenuOpen] = useState(false);
 
+  useEffect(() => {
+    document.body.classList.toggle('menu-open', menuOpen);
+    return () => document.body.classList.remove('menu-open');
+  }, [menuOpen]);
+
+  useEffect(() => {
+    const items = document.querySelectorAll('[data-reveal]');
     const observer = new IntersectionObserver(
-      (entries) => entries.forEach((entry) => entry.isIntersecting && entry.target.classList.add('in')),
-      { threshold: 0.12 }
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) entry.target.classList.add('is-visible');
+        });
+      },
+      { threshold: 0.14 }
     );
 
-    document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
-    window.addEventListener('mousemove', onMove, { passive: true });
+    items.forEach((item) => observer.observe(item));
 
-    return () => {
-      window.removeEventListener('mousemove', onMove);
-      observer.disconnect();
-    };
+    return () => observer.disconnect();
   }, []);
+
+  const closeMenu = () => setMenuOpen(false);
 
   return (
     <>
-      <div className="atmo atmo-noise" aria-hidden="true" />
-      <div className="atmo atmo-stars" aria-hidden="true" />
-      <div className="atmo atmo-fog-back" aria-hidden="true" />
-      <div className="atmo atmo-fog-front" aria-hidden="true" />
-      <div className="atmo atmo-moon" aria-hidden="true" />
+      <header className="site-header">
+        <div className="container header-inner">
+          <a className="brand" href="#hero" onClick={closeMenu}>
+            <span>Eragon</span>
+            <small>Exchange</small>
+          </a>
 
-      <div className="top-nav reveal">
-        <div className="top-nav-inner">
-          <a href="#hero" className="brand">Elven AI Lab</a>
-          <nav>
-            <a href="#hero">Врата</a>
-            <a href="#gates">Дома</a>
-            <a href="#oath">Клятва</a>
+          <nav className="desktop-nav" aria-label="Основная навигация">
+            <a href="#routes">Маршруты</a>
+            <a href="#process">Процесс</a>
+            <a href="#safety">Правила</a>
           </nav>
-          <a href="#gates" className="mini-cta">Войти</a>
+
+          <a className="header-cta" href="#routes">Выбрать биржу</a>
+
+          <button
+            className="burger"
+            type="button"
+            aria-label={menuOpen ? 'Закрыть меню' : 'Открыть меню'}
+            aria-expanded={menuOpen}
+            onClick={() => setMenuOpen((value) => !value)}
+          >
+            <span />
+            <span />
+          </button>
         </div>
-      </div>
 
-      <header id="hero" className="hero reveal">
-        <div className="hero-scene" aria-hidden="true">
-          <span className="portal-halo" />
-          <span className="portal-arch outer" />
-          <span className="portal-arch inner" />
-          <span className="light-ray ray-a" />
-          <span className="light-ray ray-b" />
-          <span className="light-ray ray-c" />
-          <span className="forest-depth" />
-          <span className="rune-ring" />
-        </div>
-
-        <div className="hero-inner">
-          <p className="kicker">Elven AI Lab · Ellesméra Gateway</p>
-          <div className="hero-sigil" aria-hidden="true" />
-          <h1 className="hero-title">Лунные Врата Эллесмеры</h1>
-          <p className="hero-line">Выбери свой путь</p>
-          <p className="subtitle">Открой врата и следуй дисциплине.</p>
-
-          <div className="hero-cta-row">
-            <a href="#gates" className="btn btn-primary">Открыть Врата</a>
-            <a href="#oath" className="btn btn-secondary">Клятва Пути</a>
-          </div>
+        <div className="mobile-panel">
+          <nav aria-label="Мобильная навигация">
+            <a href="#routes" onClick={closeMenu}>Маршруты</a>
+            <a href="#process" onClick={closeMenu}>Процесс</a>
+            <a href="#safety" onClick={closeMenu}>Правила</a>
+            <a href="#routes" className="mobile-cta" onClick={closeMenu}>Выбрать биржу</a>
+          </nav>
         </div>
       </header>
 
       <main>
-        <section className="section reveal intro-runes">
-          <div className="intro-pill">Ellesméra · Arya · Sacred Geometry · Disciplined Path</div>
+        <section id="hero" className="hero">
+          <div className="hero-bg" aria-hidden="true">
+            <span className="orb orb-a" />
+            <span className="orb orb-b" />
+            <span className="grid-glow" />
+          </div>
+
+          <div className="container hero-grid">
+            <div className="hero-copy" data-reveal>
+              <p className="eyebrow">Crypto routes · referral gateway</p>
+              <h1>Eragon Exchange — аккуратный вход в крипто-маршруты</h1>
+              <p className="hero-text">
+                Сравни биржи, выбери подходящий маршрут и переходи по готовой ссылке без хаоса,
+                лишних вкладок и случайных решений.
+              </p>
+
+              <div className="hero-actions">
+                <a className="btn primary" href="#routes">Смотреть маршруты</a>
+                <a className="btn secondary" href="#safety">Правила входа</a>
+              </div>
+            </div>
+
+            <div className="portal-card" data-reveal>
+              <div className="portal-ring" aria-hidden="true" />
+              <p>Route map</p>
+              <strong>4 exchange gates</strong>
+              <span>Bybit · Bitget · MEXC · Ourbit</span>
+            </div>
+          </div>
         </section>
 
-        <section id="gates" className="section section-gates reveal">
-          <div className="section-head">
-            <h2>Врата Торговых Домов</h2>
-            <p>Сильная атмосфера с простым действием: выбрал, нажал, вошёл.</p>
+        <section className="stats container" aria-label="Краткая статистика">
+          {stats.map(([value, label]) => (
+            <div className="stat" key={label} data-reveal>
+              <b>{value}</b>
+              <span>{label}</span>
+            </div>
+          ))}
+        </section>
+
+        <section id="routes" className="section container">
+          <div className="section-head" data-reveal>
+            <p className="eyebrow">Exchange gates</p>
+            <h2>Выбери биржу под свой сценарий</h2>
+            <span>
+              Это не финансовая рекомендация. Сайт помогает быстро перейти к нужной платформе и
+              держать структуру перед глазами.
+            </span>
           </div>
-          <div className="gates-grid">
+
+          <div className="exchange-grid">
             {exchanges.map((item) => (
               <ExchangeCard key={item.id} item={item} />
             ))}
           </div>
         </section>
 
-        <section id="oath" className="section oath reveal">
-          <h2>Клятва Всадника</h2>
-          <p>Один вход — одна стратегия. Один риск — один лимит. Один путь — без хаоса.</p>
-          <div className="oath-steps">
-            <div className="step"><b>01</b><span>Выбери гильдию</span></div>
-            <div className="step"><b>02</b><span>Проверь условия</span></div>
-            <div className="step"><b>03</b><span>Входи по плану</span></div>
+        <section id="process" className="section container split-section">
+          <div className="section-head left" data-reveal>
+            <p className="eyebrow">Disciplined path</p>
+            <h2>Не просто ссылка, а порядок входа</h2>
+            <span>
+              Перед регистрацией проверь региональные ограничения, комиссии, KYC и свои лимиты.
+              Хороший маршрут начинается не с клика, а с плана.
+            </span>
           </div>
+
+          <div className="steps">
+            {steps.map(([num, title, text]) => (
+              <div className="step" key={num} data-reveal>
+                <b>{num}</b>
+                <div>
+                  <h3>{title}</h3>
+                  <p>{text}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section id="safety" className="section container safety" data-reveal>
+          <p className="eyebrow">Risk note</p>
+          <h2>Крипта требует дисциплины</h2>
+          <p>
+            Используй отдельные пароли, 2FA, лимиты риска и не заходи в сделки без понятного
+            сценария. Любая биржа — это инструмент, а не гарантия результата.
+          </p>
+          <a className="btn primary" href="#routes">Вернуться к маршрутам</a>
         </section>
       </main>
 
-      <div className="mobile-sticky-cta">
-        <a href="#gates" className="btn btn-primary">Открыть Врата</a>
-      </div>
-
-      <footer className="reveal">
-        <p>🌿 Elven AI Lab</p>
+      <footer className="site-footer">
+        <div className="container footer-inner">
+          <div>
+            <strong>Eragon Exchange</strong>
+            <p>Referral gateway for structured crypto routes.</p>
+          </div>
+          <nav>
+            <a href="#hero">Наверх</a>
+            <a href="#routes">Биржи</a>
+            <a href="#safety">Правила</a>
+          </nav>
+        </div>
       </footer>
     </>
   );

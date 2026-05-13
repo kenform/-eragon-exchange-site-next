@@ -1,24 +1,30 @@
 export default function ExchangeCard({ item }) {
   return (
-    <article className={`gate reveal tone-${item.tone} ${item.highlight ? 'highlighted' : ''}`}>
-      <div className="gate-topline" aria-hidden="true" />
-      <span className="rune" aria-hidden="true" />
-      <span className="gate-glyph" aria-hidden="true" />
-
-      <div className="gate-head">
-        <span className="sigil" aria-hidden="true">{item.sigil}</span>
-        <span className="gate-badge">{item.badge}</span>
+    <article className={`exchange-card tone-${item.tone} ${item.featured ? 'is-featured' : ''}`}>
+      <div className="card-orbit" aria-hidden="true" />
+      <div className="card-top">
+        <span className="sigil">{item.sigil}</span>
+        <span className="badge">{item.badge}</span>
       </div>
 
-      <p className="gate-house">{item.house}</p>
+      <p className="house">{item.house}</p>
       <h3>{item.name}</h3>
-      <p>{item.desc}</p>
+      <p className="card-desc">{item.desc}</p>
 
-      <a className="btn btn-ghost" href={item.href} target="_blank" rel="noopener noreferrer">
-        Войти в гильдию
-      </a>
+      <ul className="point-list">
+        {item.points.map((point) => (
+          <li key={point}>{point}</li>
+        ))}
+      </ul>
 
       {item.note ? <p className="note">{item.note}</p> : null}
+
+      <div className="card-bottom">
+        <span>REF: {item.refCode}</span>
+        <a href={item.href} target="_blank" rel="noopener noreferrer">
+          Открыть
+        </a>
+      </div>
     </article>
   );
 }

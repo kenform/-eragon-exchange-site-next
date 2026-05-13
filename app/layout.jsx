@@ -1,8 +1,8 @@
 import './globals.css';
 
 export const metadata = {
-  title: 'Elven Exchange Codex',
-  description: 'Fantasy-style exchange gateway with referral links.',
+  title: 'Eragon Exchange — crypto route gateway',
+  description: 'Современный referral gateway для выбора крипто-бирж и аккуратного входа по маршрутам.',
   icons: {
     icon: [
       { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },

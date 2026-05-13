@@ -1,6 +1,7 @@
 import './globals.css';
 
 export const metadata = {
+  metadataBase: new URL('https://eragon-exchange-site-next-kenformgod-6184s-projects.vercel.app'),
   title: 'Eragon Exchange — referral route gateway',
   description: 'Аккуратный переходник по крипто-биржам: маршруты, ссылки, правила входа и риск-дисциплина.',
   openGraph: {
@@ -9,14 +10,8 @@ export const metadata = {
     images: ['/images/brand/eragon_exchange_card_mockup.png'],
   },
   icons: {
-    icon: [
-      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
-      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
-      { url: '/favicon-48x48.png', sizes: '48x48', type: 'image/png' },
-      { url: '/favicon.ico' },
-    ],
-    apple: [{ url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' }],
-    shortcut: ['/favicon.ico'],
+    icon: '/images/brand/eragon_exchange_square_icon.png',
+    apple: '/images/brand/eragon_exchange_square_icon.png',
   },
 };
 
